@@ -1,12 +1,15 @@
 import React from 'react';
-
+import CountdownButton from './components/CountdownButton';
+import {FreeTabataProvider} from './context/FreeTabataContext';
 
 
 function App() {
   return (
-    <div className="App">
-      {"Hello world"}
-    </div>
+    <FreeTabataProvider>
+      <CountdownButton type={'prepareCountdown'}/>
+      <CountdownButton type={'workCountdown'}/>
+      <CountdownButton type={'restCountdown'}/>
+    </FreeTabataProvider>
   );
 }
 
