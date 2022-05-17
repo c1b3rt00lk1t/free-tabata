@@ -4,28 +4,52 @@
 }
 
 *{
-    background-color: black;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
+body{
+    background-color: black;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
 /* Flexbox classes */
 .verticalContainer{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    align-items: center;
+    gap: 0.5vh;
+
 }
 
 .horizontalContainer{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;   
 }
 
 /* Mobile first */
 .countdownBtn{
     width: 90vw;
     height: calc(var(--countdownBtnHeight)/3.2);
+    border-radius: 1vh;
+    margin: 0.5vh;
+    padding: 5px;
 
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center; 
 }
+
+.countdownBtnItems{
+    margin: 0 5vw;
+    font-size: 8vw;
+    font-weight: bold;
+}
+
 .prepare{
     background-color:gold 
 }
@@ -40,9 +64,15 @@
 
 /* Adjustment for wider screens */
 
-@media (min-width: 400px) { 
+@media (min-width: 600px) { 
     .countdownBtn{
         width: 40vw;
         height: calc(var(--countdownBtnHeight)/3.2);
+    }
+
+    .countdownBtnItems{
+        margin: 0 4vw;
+        font-size: 2.5vw;
+        font-weight: bold;
     }
 }
