@@ -4,6 +4,10 @@ import VerticalContainer from "./flexbox/VerticalContainer";
 import HorizontalContainer from "./flexbox/HorizontalContainer";
 import CountdownButton from "./components/CountdownButton";
 import TabataCycleBtn from "./components/TabataCycleButton";
+import StartStopButton from "./components/StartStopButton";
+import Volume from "./components/Volume";
+import About from "./components/About";
+
 
 function App() {
   return (
@@ -17,9 +21,15 @@ function App() {
         <HorizontalContainer>
               <TabataCycleBtn type={"cycles"}/><TabataCycleBtn type={"tabatas"}/>
         </HorizontalContainer>
+        <HorizontalContainer>
+          <Volume/><About />
+           
+        </HorizontalContainer>
+        <StartStopButton />
       </VerticalContainer>
     </FreeTabataProvider>
   );
 }
 
 export default App;
+
