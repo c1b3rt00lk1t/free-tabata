@@ -1,6 +1,8 @@
 
 :root{
     --countdownBtnHeight: 40vh;
+    --mobile-width: 90vw;
+    --large-screen-width: 40vw;
 }
 
 *{
@@ -30,13 +32,13 @@ body{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    width: 90vw;
+    width: var(--mobile-width);
 }
 
 /* MOBILE FIRST */
 /* PREPARE-WORK-REST*/
 .countdownBtn{
-    width: 90vw;
+    width: var(--mobile-width);
     height: calc(var(--countdownBtnHeight)/3.2);
     border-radius: 1vh;
     margin: 0.5vh;
@@ -62,24 +64,25 @@ body{
 }
 
 .work{
+    background-color: rgb(123, 195, 15);
+    border-style: solid;
+    border-width: 1vw;
+    border-color: rgb(0, 96, 0);
+}
+
+.rest{
+
     background-color: red;
     border-style: solid;
     border-width: 1vw;
     border-color: crimson;
 }
-
-.rest{
-    background-color: green;
-    border-style: solid;
-    border-width: 1vw;
-    border-color: rgb(0, 96, 0);
-}
 /* TABATAS-CYCLES*/
 
 .tabatas,.cycles{
     background-color: whitesmoke;
-    width: 35vw;
-    height: calc(var(--countdownBtnHeight)/2.4);
+    width: calc(var(--mobile-width)/2.4);
+    /* height: calc(var(--countdownBtnHeight)/2.4); */
     border-radius: 1vh;
     margin: 1.5vh 0.5vh;
     padding: 5px;
@@ -92,6 +95,7 @@ body{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    font-size: 5vw;
 }
 
 .tabataCycleNumber{
@@ -105,9 +109,9 @@ body{
 
 /* Adjustment for wider screens */
 
-@media (min-width: 600px) { 
+@media (min-width: 1000px) { 
     .countdownBtn{
-        width: 40vw;
+        width: var(--large-screen-width);
         height: calc(var(--countdownBtnHeight)/3.2);
     }
 
@@ -137,6 +141,37 @@ body{
         border-width: 0.2vw;
         border-color: rgb(0, 96, 0);
     }
+
+
+    /* TABATAS-CYCLES*/
+
+    .horizontalContainer{
+        width: var(--large-screen-width);
+    }
+
+    .tabatas,.cycles{
+        background-color: whitesmoke;
+        width: calc(var(--large-screen-width)/2.4);
+        /* height: calc(var(--countdownBtnHeight)); */
+        border-radius: 1vh;
+        margin: 1.5vh 0.5vh;
+        padding: 5px;
+        text-align: center;
+
+        border-style: solid;
+        border-width: 1vw;
+        border-color: antiquewhite;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .tabataCycleNumber{
+        font-size: 7vw;
+        font-weight: bold;
+    }
+
 
 
 
