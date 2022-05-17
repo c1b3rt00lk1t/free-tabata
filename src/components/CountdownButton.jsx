@@ -7,7 +7,7 @@ const CountdownButton = ({type}) => {
   const context = useContext(FreeTabataContext);
   const countdown = context[type];
   return (
-    <div className={type}>{countdown}</div>
+    <div className={`${type}  countdownBtn`}>{countdown}</div>
   )
 }
 

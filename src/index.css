@@ -1,6 +1,31 @@
 
+:root{
+    --countdownBtnHeight: 30vh;
+}
 
+*{
+    background-color: black;
+}
 
+/* Flexbox classes */
+.verticalContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.horizontalContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+/* Mobile first */
+.countdownBtn{
+    width: 90vw;
+    height: calc(var(--countdownBtnHeight)/3.2);
+
+}
 .prepareCountdown{
     background-color:gold 
 }
@@ -11,4 +36,13 @@
 
 .restCountdown{
     background-color: green;
+}
+
+/* Adjustment for wider screens */
+
+@media (min-width: 400px) { 
+    .countdownBtn{
+        width: 40vw;
+        height: calc(var(--countdownBtnHeight)/3.2);
+    }
 }
