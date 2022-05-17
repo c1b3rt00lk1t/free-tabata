@@ -60,6 +60,7 @@ body{
     margin: 0 5vw;
     font-size: 8vw;
     font-weight: bold;
+    letter-spacing: -1px;
 }
 
 .prepare{
