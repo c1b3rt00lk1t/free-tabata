@@ -26,15 +26,15 @@
     height: calc(var(--countdownBtnHeight)/3.2);
 
 }
-.prepareCountdown{
+.prepare{
     background-color:gold 
 }
 
-.workCountdown{
+.work{
     background-color: red;
 }
 
-.restCountdown{
+.rest{
     background-color: green;
 }
 

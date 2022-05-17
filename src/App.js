@@ -10,9 +10,9 @@ function App() {
     <FreeTabataProvider>
       <VerticalContainer>
         <VerticalContainer>
-            <CountdownButton type={'prepareCountdown'}/>
-            <CountdownButton type={'workCountdown'}/>
-            <CountdownButton type={'restCountdown'}/>
+            <CountdownButton type={'prepare'}/>
+            <CountdownButton type={'work'}/>
+            <CountdownButton type={'rest'}/>
         </VerticalContainer>
       </VerticalContainer>
     </FreeTabataProvider>
