@@ -1,8 +1,8 @@
 import React from 'react'
 
-const VerticalContainer = ({children}) => {
+const VerticalContainer = ({children, classes}) => {
   return (
-    <div className='verticalContainer'>{children}</div>
+    <div className={`verticalContainer ${classes}`}>{children}</div>
   )
 }
 
