@@ -11,9 +11,9 @@ export const FreeTabataProvider = ({ children }) => {
   // const [generalMode, setGeneralMode] = useState(0); // it could be stopped (0), on-going (1), paused (2)
   // const [cycleMode, setCycleMode] = useState("none"); // it could be none, prepare, work, rest
 
-  const [prepare, setPrepare] = useState(10);
-  const [work, setWork] = useState(20);
-  const [rest] = useState(10);
+  const [prepare, setPrepare] = useState(5);
+  const [work, setWork] = useState(5);
+  const [rest, setRest] = useState(5);
   const [tabatas] = useState(1);
   const [cycles] = useState(8);
   const [generalMode, setGeneralMode] = useState(false); // it could be stopped (false), on-going (true)
@@ -24,6 +24,7 @@ export const FreeTabataProvider = ({ children }) => {
   };
 
   useEffect(() => {
+    // In this first approach, the prepare calls the work when it ends
     const prepareCountDown = () => {
       if (prepare === 0) {
         workCountDown();
@@ -35,10 +36,10 @@ export const FreeTabataProvider = ({ children }) => {
         setTimer(interval);
       }
     };
-    // 
+    // In this first approach, the work calls the rest when it ends 
     const workCountDown = () => {
       if (work === 0) {
-        console.log("End of the countdown");
+        restCountDown();
       } else {
         const interval = setTimeout(() => {
           setWork(work - 1);
@@ -48,14 +49,38 @@ export const FreeTabataProvider = ({ children }) => {
       }
     };
 
+    // In this first approach, the work calls the rest when it ends 
+    const restCountDown = () => {
+      if (rest === 0) {
+        setWork(5);
+        setRest(5);
+      } else {
+        const interval = setTimeout(() => {
+          setRest(rest - 1);
+          console.log(rest - 1);
+        }, 1000);
+        setTimer(interval);
+      }
+    };
+
+    // This triggers the full cycle prepare-work-rest
     if (generalMode) {
       prepareCountDown();
     }
-  }, [generalMode, prepare, work]);
+  }, [generalMode, prepare, work, rest]);
 
   //This useEffect is used to pause the countDown at any time
   useEffect(() => {
-    !generalMode && clearTimeout(timer);
+    // This line would only PAUSE the countdown
+    // !generalMode && clearTimeout(timer);
+
+    // At this point we want it to really stop and reset
+    if(!generalMode){
+       clearTimeout(timer);
+       setPrepare(5);
+       setWork(5);
+       setRest(5)
+    }
   }, [generalMode, timer]);
 
   return (
