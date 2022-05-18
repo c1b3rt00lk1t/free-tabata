@@ -17,13 +17,14 @@ export const FreeTabataProvider = ({ children }) => {
   const [rest] = useState(10);
   const [tabatas] = useState(1);
   const [cycles] = useState(8);
-  const [generalMode] = useState(0); // it could be stopped (0), on-going (1), paused (2)
+  const [generalMode, setGeneralMode] = useState(false); // it could be stopped (false), on-going (true)
 
-
+  const handleStartStop = () => {setGeneralMode(!generalMode)}
+  
 
   return (
     <FreeTabataContext.Provider
-      value={{ prepare, work, rest, tabatas, cycles,generalMode }}
+      value={{ prepare, work, rest, tabatas, cycles,generalMode,handleStartStop }}
     >
       {children}
     </FreeTabataContext.Provider>

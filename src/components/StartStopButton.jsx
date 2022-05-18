@@ -2,11 +2,11 @@ import React, {useContext} from 'react'
 import FreeTabataContext from "../context/FreeTabataContext";
 
 const StartStopButton = () => {
-  const {generalMode} = useContext(FreeTabataContext);
-  const mapper = ['start','stop','stop'];
+  const {generalMode, handleStartStop} = useContext(FreeTabataContext);
+  const mapper = ['start','stop'];
  
   return (
-    <div className='startStopBtn'>{mapper[generalMode]}</div>
+    <div onClick={handleStartStop}className='startStopBtn'>{mapper[+generalMode]}</div>
   )
 }
 
