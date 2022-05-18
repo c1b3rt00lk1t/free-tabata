@@ -6,6 +6,7 @@
     --startStopBtnHeight: 13.5vh;
     --mobile-height-width-factor: 2vw;
     --mobile-width: 90vw;
+    --mobile-border-radius: 2.5vh;
 
     --large-screen-width: 40vw;
     --large-screen-factor: 35vw;
@@ -46,7 +47,7 @@ body{
 .countdownBtn{
     width: var(--mobile-width);
     height: calc(var(--countdownBtnsHeight)/3.2);
-    border-radius: 1vh;
+    border-radius: var(--mobile-border-radius);
     margin: 0.5vh;
     padding: 5px;
 
@@ -90,7 +91,7 @@ body{
     background-color: whitesmoke;
     width: calc(var(--mobile-width)/2.4);
     height: var(--cycleTabatBtnHeight);
-    border-radius: 1vh;
+    border-radius: var(--mobile-border-radius);
     margin: 2.5vh 0.5vh;
     padding-bottom: 1.5vh;
     text-align: center;
@@ -125,7 +126,7 @@ body{
 .startStopBtn{
     width: var(--mobile-width);
     height: var(--startStopBtnHeight);
-    border-radius: 1vh;
+    border-radius: var(--mobile-border-radius);
     margin: 0.5vh;
 
 
