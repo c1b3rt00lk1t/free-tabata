@@ -1,11 +1,14 @@
 import React from "react";
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import { FreeTabataProvider } from "./context/FreeTabataContext";
-import CountdownButton from "./components/CountdownButton";
-import TabataCycleBtn from "./components/TabataCycleButton";
-import StartStopButton from "./components/StartStopButton";
-import Volume from "./components/Volume";
-import About from "./components/About";
+import Cycles from "./pages/Cycles";
+import Main from "./pages/Main";
+import Ongoing from "./pages/Ongoing";
+import Prepare from "./pages/Prepare";
+import Rest from "./pages/Rest";
+import Tabatas from "./pages/Tabatas";
+import Work from "./pages/Work";
+import About from "./pages/About";
 
 function App() {
   return (
@@ -14,43 +17,28 @@ function App() {
         <div className={"verticalContainer margintop-5vh"}>
           <Routes>          
             <Route exact path='/' element = {
-              <>
-                  <div className={"verticalContainer"}>
-                    <CountdownButton type={"prepare"} />
-                    <CountdownButton type={"work"} />
-                    <CountdownButton type={"rest"} />
-                  </div>
-                  <div className="horizontalContainer">
-                    <TabataCycleBtn type={"cycles"} />
-                    <TabataCycleBtn type={"tabatas"} />
-                  </div>
-                  <div className={"horizontalContainer"}>
-                    <Volume />
-                    <About />
-                  </div>
-                  <StartStopButton />
-              </>
+              <Main />
             }></Route>
             <Route exact path='/prepare' element = {
-              <><div style={{color:'white'}}>Prepare...</div></>
+              <Prepare/>
             }></Route>
             <Route exact path='/work' element = {
-              <><div style={{color:'white'}}>Work...</div></>
+              <Work/>
             }></Route>
             <Route exact path='/rest' element = {
-              <><div style={{color:'white'}}>Work...</div></>
+              <Rest/>
             }></Route>
             <Route exact path='/cycles' element = {
-              <><div style={{color:'white'}}>Cycles...</div></>
+              <Cycles/>
             }></Route>
             <Route exact path='/tabatas' element = {
-              <><div style={{color:'white'}}>Tabatas...</div></>
+              <Tabatas/>
             }></Route>
             <Route exact path='/about' element = {
-              <><div style={{color:'white'}}>About...</div></>
+              <About/>
             }></Route>
             <Route exact path='/ongoing' element = {
-              <><div style={{color:'white'}}>Ongoing...</div></>
+              <Ongoing/>
             }></Route>
           </Routes>  
         </div>
