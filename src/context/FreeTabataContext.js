@@ -23,40 +23,40 @@ export const FreeTabataProvider = ({ children }) => {
     setGeneralMode(!generalMode);
   };
 
-  const prepareCountDown = () => {
-    if (prepare === 0) {
-      console.log("End of the countdown");
-      workCountDown();
-    } else {
-      const interval = setTimeout(() => {
-        setPrepare(prepare - 1);
-        console.log(prepare - 1);
-      }, 1000);
-      setTimer(interval);
-    }
-  };
-
-  const workCountDown = () => {
-    if (work === 0) {
-      console.log("End of the countdown");
-    } else {
-      const interval = setTimeout(() => {
-        setWork(work - 1);
-        console.log(work - 1);
-      }, 1000);
-      setTimer(interval);
-    }
-  }
-
   useEffect(() => {
-    generalMode ? prepareCountDown() : clearTimeout(timer);
-  }, [generalMode, prepare]);
+    const prepareCountDown = () => {
+      if (prepare === 0) {
+        workCountDown();
+      } else {
+        const interval = setTimeout(() => {
+          setPrepare(prepare - 1);
+          console.log(prepare - 1);
+        }, 1000);
+        setTimer(interval);
+      }
+    };
+    // 
+    const workCountDown = () => {
+      if (work === 0) {
+        console.log("End of the countdown");
+      } else {
+        const interval = setTimeout(() => {
+          setWork(work - 1);
+          console.log(work - 1);
+        }, 1000);
+        setTimer(interval);
+      }
+    };
 
+    if (generalMode) {
+      prepareCountDown();
+    }
+  }, [generalMode, prepare, work]);
 
+  //This useEffect is used to pause the countDown at any time
   useEffect(() => {
-    !prepare && generalMode ? workCountDown() : clearTimeout(timer);
-  }, [generalMode, work]);
-
+    !generalMode && clearTimeout(timer);
+  }, [generalMode, timer]);
 
   return (
     <FreeTabataContext.Provider
@@ -68,6 +68,7 @@ export const FreeTabataProvider = ({ children }) => {
         cycles,
         generalMode,
         handleStartStop,
+        timer,
       }}
     >
       {children}
