@@ -17,10 +17,29 @@ export const FreeTabataProvider = ({ children }) => {
   const [tabatas] = useState(1);
   const [cycles] = useState(8);
   const [generalMode, setGeneralMode] = useState(false); // it could be stopped (false), on-going (true)
+  const [pauseMode, setPauseMode] = useState(false); // it could be paused (false), on-going (true)
   const [timer, setTimer] = useState();
 
   const handleStartStop = () => {
-    setGeneralMode(!generalMode);
+    // When the Start/Stop button is clicked and the current mode is working, it stops the timer and resets
+    if(generalMode){
+      clearTimeout(timer);
+      setPrepare(5);
+      setWork(5);
+      setRest(5);
+      setPauseMode(false);
+   }
+   // In any case, the mode is toggled
+   setGeneralMode(!generalMode);
+  };
+
+  const handleStartPause = () => {
+    // When the Start/Pause button is clicked and the current mode is working, it stops the timer but does not reset
+    if(generalMode && pauseMode){
+      clearTimeout(timer);
+   }
+   // If the generalMode is active, the pause mode is toggled
+   generalMode && setPauseMode(!pauseMode);
   };
 
   useEffect(() => {
@@ -31,7 +50,6 @@ export const FreeTabataProvider = ({ children }) => {
       } else {
         const interval = setTimeout(() => {
           setPrepare(prepare - 1);
-          console.log(prepare - 1);
         }, 1000);
         setTimer(interval);
       }
@@ -43,7 +61,6 @@ export const FreeTabataProvider = ({ children }) => {
       } else {
         const interval = setTimeout(() => {
           setWork(work - 1);
-          console.log(work - 1);
         }, 1000);
         setTimer(interval);
       }
@@ -57,31 +74,17 @@ export const FreeTabataProvider = ({ children }) => {
       } else {
         const interval = setTimeout(() => {
           setRest(rest - 1);
-          console.log(rest - 1);
         }, 1000);
         setTimer(interval);
       }
     };
 
     // This triggers the full cycle prepare-work-rest
-    if (generalMode) {
+    if (generalMode && !pauseMode) {
       prepareCountDown();
     }
-  }, [generalMode, prepare, work, rest]);
+  }, [generalMode, prepare, work, rest, pauseMode]);
 
-  //This useEffect is used to pause the countDown at any time
-  useEffect(() => {
-    // This line would only PAUSE the countdown
-    // !generalMode && clearTimeout(timer);
-
-    // At this point we want it to really stop and reset
-    if(!generalMode){
-       clearTimeout(timer);
-       setPrepare(5);
-       setWork(5);
-       setRest(5)
-    }
-  }, [generalMode, timer]);
 
   return (
     <FreeTabataContext.Provider
@@ -93,6 +96,8 @@ export const FreeTabataProvider = ({ children }) => {
         cycles,
         generalMode,
         handleStartStop,
+        pauseMode,
+        handleStartPause,
         timer,
       }}
     >

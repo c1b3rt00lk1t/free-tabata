@@ -3,6 +3,7 @@ import TabataCycleBtn from "../components/TabataCycleButton";
 import StartStopButton from "../components/StartStopButton";
 import Volume from "../components/Volume";
 import AboutButton from "../components/AboutButton";
+import PauseButton from "../components/PauseButton";
 
 const Main = () => {
   return (
@@ -18,6 +19,7 @@ const Main = () => {
                   </div>
                   <div className={"horizontalContainer"}>
                     <Volume />
+                    <PauseButton/>
                     <AboutButton />
                   </div>
                   <StartStopButton />
