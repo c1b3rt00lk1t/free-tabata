@@ -3,17 +3,17 @@
   "name": "Tabata Free App",
   "icons": [
     {
-      "src": "TabataFree192.png",
+      "src": "TabataFree.png",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
     },
     {
-      "src": "TabataFree192.png",
+      "src": "TabataFree.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "TabataFree512.png",
+      "src": "TabataFree.png",
       "type": "image/png",
       "sizes": "512x512"
     }
