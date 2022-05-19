@@ -64,22 +64,6 @@ body{
     letter-spacing: -1px;
 }
 
-.display{
-    width: var(--mobile-width);
-    height: calc(var(--countdownBtnsHeight)*1.1);
-    border-radius: var(--mobile-border-radius);
-    margin: 0.5vh;
-    padding: 5px;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
-    align-items: center;
-
-    font-weight: bold;
-    font-size: 5vh;
-    letter-spacing: -1px;
-}
 
 .countdownDisplayItems{
     margin: 0 5vw;
@@ -135,6 +119,25 @@ body{
     font-size: 8vh;
     font-weight: bold;
 }
+
+
+.display{
+    width: var(--mobile-width);
+    height: calc(var(--countdownBtnsHeight)*1.1);
+    border-radius: var(--mobile-border-radius);
+    margin: 0.5vh;
+    padding: 5px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+
+    font-weight: bold;
+    font-size: 5vh;
+    letter-spacing: -1px;
+}
+
 
 /* MISC*/
 .misc{
