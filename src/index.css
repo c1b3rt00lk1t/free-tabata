@@ -93,6 +93,15 @@ body{
     border-width: 1vw;
     border-color: crimson;
 }
+
+.wait{
+
+    background-color: blue;
+    border-style: solid;
+    border-width: 1vw;
+    border-color: rgb(2, 2, 137);
+}
+
 /* TABATAS-CYCLES*/
 
 .tabatas,.cycles{

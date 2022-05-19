@@ -25,12 +25,13 @@ export const FreeTabataProvider = ({ children }) => {
   };
 
   // default values for testing
-  const NR_PREPARE = 5;
-  const NR_WORK = 20;
-  const NR_REST = 10;
+  const NR_PREPARE = 4;
+  const NR_WORK = 4; //20
+  const NR_REST = 4; //10
+  const NR_WAIT = 6; //60
 
-  const NR_TABATAS = 1;
-  const NR_CYCLES = 8;
+  const NR_TABATAS = 2; // 1
+  const NR_CYCLES = 2; //8
 
   const [prepareInit, setPrepareInit] = useState(NR_PREPARE);
   const [workInit, setWorkInit] = useState(NR_WORK);
@@ -41,6 +42,7 @@ export const FreeTabataProvider = ({ children }) => {
   const [prepare, setPrepare] = useState(NR_PREPARE);
   const [work, setWork] = useState(NR_WORK);
   const [rest, setRest] = useState(NR_REST);
+  const [wait, setWait] = useState(NR_WAIT);
   const [tabatas, setTabatas] = useState(NR_TABATAS);
   const [cycles, setCycles] = useState(NR_CYCLES);
   const [generalMode, setGeneralMode] = useState(false); // it could be stopped (false), on-going (true)
@@ -112,7 +114,6 @@ export const FreeTabataProvider = ({ children }) => {
   useEffect(() => {
     // In this first approach, the prepare calls the work when it ends
     const prepareCountDown = () => {
-
       if (prepare > 0 && prepare < 4) {
         !mute && audio.play();
       }
@@ -146,6 +147,9 @@ export const FreeTabataProvider = ({ children }) => {
           setTabatas(tabatasInit);
           setFlow("prepare");
           setGeneralMode(false);
+        } else if (cycles === 1 && tabatas > 1) {
+          setFlow("wait");
+          waitCountDown();
         } else {
           setFlow("rest");
           restCountDown();
@@ -186,11 +190,51 @@ export const FreeTabataProvider = ({ children }) => {
       }
     };
 
+    //
+    const waitCountDown = () => {
+      if (wait === 0) {
+        console.log('hello')
+        setFlow("work");    
+        setWait(NR_WAIT);    
+          setCycles(cyclesInit);
+          setWork(workInit);
+          setRest(restInit);
+          setTabatas(tabatas - 1);
+        
+      } else {
+        const interval = setTimeout(() => {
+          setWait(wait - 1);
+        }, 1000);
+        setTimer(interval);
+      }
+    };
+
     // This triggers the full cycle prepare-work-rest
     if (generalMode && !pauseMode) {
       prepareCountDown();
     }
-  }, [generalMode, prepare, work, rest, pauseMode, cycles, tabatas, workInit, restInit, cyclesInit, prepareInit, tabatasInit, audioBeep, audioGo, audioRest, audioVictory, audioStop, audio, mute]);
+  }, [
+    generalMode,
+    prepare,
+    work,
+    rest,
+    pauseMode,
+    cycles,
+    tabatas,
+    workInit,
+    restInit,
+    cyclesInit,
+    prepareInit,
+    tabatasInit,
+    audioBeep,
+    audioGo,
+    audioRest,
+    audioVictory,
+    audioStop,
+    audio,
+    mute,
+    wait,
+  ]);
 
   /**
    * States and handlers to be provided by the Context
@@ -202,6 +246,7 @@ export const FreeTabataProvider = ({ children }) => {
         prepare,
         work,
         rest,
+        wait,
         tabatas,
         cycles,
         generalMode,

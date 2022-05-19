@@ -9,28 +9,28 @@ import { useContext } from "react";
 import DisplayCountdown from "../components/DisplayCountdown";
 
 const Main = () => {
-  const {generalMode, flow} = useContext(FreeTabataContext);
+  const { generalMode, flow } = useContext(FreeTabataContext);
 
   return (
     <>
-                  <div className={"verticalContainer"}>
-                    {!generalMode && <CountdownButton type={"prepare"}/>}
-                    {!generalMode && <CountdownButton type={"work"} />}
-                    {!generalMode && <CountdownButton type={"rest"} />}
-                    {generalMode && <DisplayCountdown type={flow} />}
-                  </div>
-                  <div className="horizontalContainer">
-                    <TabataCycleBtn type={"cycles"} />
-                    <TabataCycleBtn type={"tabatas"} />
-                  </div>
-                  <div className={"horizontalContainer"}>
-                    <Volume />
-                    <PauseButton/>
-                    <AboutButton />
-                  </div>
-                  <StartStopButton />
+      <div className={"verticalContainer"}>
+        {!generalMode && <CountdownButton type={"prepare"} />}
+        {!generalMode && <CountdownButton type={"work"} />}
+        {!generalMode && <CountdownButton type={"rest"} />}
+        {generalMode && <DisplayCountdown type={flow} />}
+      </div>
+      <div className="horizontalContainer">
+        <TabataCycleBtn type={"cycles"} />
+        <TabataCycleBtn type={"tabatas"} />
+      </div>
+      <div className={"horizontalContainer"}>
+        <Volume />
+        <PauseButton />
+        <AboutButton />
+      </div>
+      <StartStopButton />
     </>
-  )
-}
+  );
+};
 
-export default Main
+export default Main;
