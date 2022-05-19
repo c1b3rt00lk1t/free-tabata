@@ -9,7 +9,7 @@ const TabataCycleButton = ({type}) => {
   // Preparing to navigate in case of a click
   const navigate = useNavigate();
   const handleNavigate = () => {
-    navigate(`/${type}`)
+    !context['generalMode'] && navigate(`/${type}`)
   };
 
   return (
