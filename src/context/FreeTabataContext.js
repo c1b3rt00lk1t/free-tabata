@@ -114,11 +114,11 @@ export const FreeTabataProvider = ({ children }) => {
   useEffect(() => {
     // In this first approach, the prepare calls the work when it ends
     const prepareCountDown = () => {
-      audio.play();
+      // if (prepare === prepareInit){
+      //   audio.play();
+      // }
       if ( prepare > 0 && prepare < 4){
         audioBeep.play();
-        // another workaround try to overcome iphone safari limitations
-        audioStop.play();
       }
       if (prepare === 0) {
         setFlow('work');
