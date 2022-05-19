@@ -64,6 +64,31 @@ body{
     letter-spacing: -1px;
 }
 
+.display{
+    width: var(--mobile-width);
+    height: calc(var(--countdownBtnsHeight)*1.1);
+    border-radius: var(--mobile-border-radius);
+    margin: 0.5vh;
+    padding: 5px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+
+    font-weight: bold;
+    font-size: 5vh;
+    letter-spacing: -1px;
+}
+
+.countdownDisplayItems{
+    margin: 0 5vw;
+    font-size: 25vw;
+    font-weight: bold;
+    line-height: calc(var(--countdownBtnsHeight)*0.8);;
+}
+
+
 .prepare{
     background-color:gold;
     border-style: solid;
@@ -145,18 +170,33 @@ body{
 
 .doneBtn{
     width: var(--mobile-width);
-    height: calc(var(--startStopBtnHeight)/1.5);
+    height: calc(var(--startStopBtnHeight)*0.5);
     border-radius: var(--mobile-border-radius);
     margin: 0.5vh;
 
     color: rgb(157, 156, 156);
     background-color: rgb(25, 24, 24);
 
-    font-size: 4vh;
+    font-size: 3vh;
+    font-weight: bold;
     text-align: center;
-    line-height: calc(var(--startStopBtnHeight)/1.5);
+    line-height: calc(var(--startStopBtnHeight)*0.5);
 }
 
+.defaultBtn{
+    width: calc(var(--mobile-width)/3.1);
+    height: calc(var(--startStopBtnHeight)*0.5);
+    border-radius: var(--mobile-border-radius);
+    margin: 0.5vh;
+
+    color: rgb(157, 156, 156);
+    background-color: rgb(25, 24, 24);
+
+    font-size: 3vh;
+    font-weight: bold;
+    text-align: center;
+    line-height: calc(var(--startStopBtnHeight)*0.5);
+}
 
 
 /* Adjustment for wider screens */
