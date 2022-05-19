@@ -1,12 +1,12 @@
 import React, {useContext} from "react";
-import { BsFillVolumeUpFill } from "react-icons/bs";
+import { BsFillVolumeUpFill, BsVolumeMuteFill } from "react-icons/bs";
 import FreeTabataContext from "../context/FreeTabataContext";
 
 const Volume = () => {
-  const {handleVolume} = useContext(FreeTabataContext);
+  const {handleVolume, mute} = useContext(FreeTabataContext);
   return (
     <div onClick={handleVolume} className="misc">
-      <BsFillVolumeUpFill color='grey' size={35}/>
+      {mute ? <BsVolumeMuteFill  color='grey' size={35}/> : <BsFillVolumeUpFill color='grey' size={35}/>}
     </div>
   );
 };

@@ -1,16 +1,14 @@
 import { createContext, useState, useEffect } from "react";
 
-import beep from "../audio/beep.wav"
-import restaudio from "../audio/rest.wav"
-import go from "../audio/go.wav"
-import stop from "../audio/stop.wav"
-import victory from "../audio/victory.wav"
-
+import beep from "../audio/beep.wav";
+import restaudio from "../audio/rest.wav";
+import go from "../audio/go.wav";
+import stop from "../audio/stop.wav";
+import victory from "../audio/victory.wav";
 
 const FreeTabataContext = createContext();
 
 export const FreeTabataProvider = ({ children }) => {
-
   // sounds used in the app
   const [audioBeep] = useState(new Audio(beep));
   const [audioRest] = useState(new Audio(restaudio));
@@ -18,15 +16,19 @@ export const FreeTabataProvider = ({ children }) => {
   const [audioStop] = useState(new Audio(stop));
   const [audioVictory] = useState(new Audio(victory));
   const [audio, setAudio] = useState();
-  
-  const handleVolume = () => {setAudio(new Audio(beep))};
- 
-  
+  const [mute, setMute] = useState(true);
+
+  //important to trick the Safari Iphone autoplay restrictions
+  const handleVolume = () => {
+    setAudio(new Audio(beep));
+    setMute(!mute);
+  };
+
   // default values for testing
   const NR_PREPARE = 5;
   const NR_WORK = 20;
   const NR_REST = 10;
-  
+
   const NR_TABATAS = 1;
   const NR_CYCLES = 8;
 
@@ -44,36 +46,34 @@ export const FreeTabataProvider = ({ children }) => {
   const [generalMode, setGeneralMode] = useState(false); // it could be stopped (false), on-going (true)
   const [pauseMode, setPauseMode] = useState(false); // it could be paused (false), on-going (true)
   const [timer, setTimer] = useState();
-  const [flow,setFlow] = useState('prepare');
+  const [flow, setFlow] = useState("prepare");
 
   /**
    * Logic to set the initial values before starting the workout
    */
-  const handleSetprepare = (nr) => ( ) => {
+  const handleSetprepare = (nr) => () => {
     setPrepareInit(nr);
     setPrepare(nr);
-    
   };
 
-  const handleSetwork = (nr) => ( ) => {
+  const handleSetwork = (nr) => () => {
     setWorkInit(nr);
     setWork(nr);
   };
 
-  const handleSetrest =  (nr) =>( ) => {
+  const handleSetrest = (nr) => () => {
     setRestInit(nr);
     setRest(nr);
   };
 
-  const handleSettabatas =  (nr) =>( ) => {
+  const handleSettabatas = (nr) => () => {
     setTabatasInit(nr);
     setTabatas(nr);
   };
-  const handleSetcycles =  (nr) =>( ) => {
+  const handleSetcycles = (nr) => () => {
     setCyclesInit(nr);
     setCycles(nr);
   };
-
 
   /**
    * Logic to start, pause and stop the workout
@@ -89,9 +89,8 @@ export const FreeTabataProvider = ({ children }) => {
       setCycles(cyclesInit);
       setTabatas(tabatasInit);
       setPauseMode(false);
-      setFlow('prepare');
-      audioStop.play();
-      
+      setFlow("prepare");
+      !mute && audioStop.play();
     }
     // In any case, the mode is toggled
     setGeneralMode(!generalMode);
@@ -106,7 +105,6 @@ export const FreeTabataProvider = ({ children }) => {
     generalMode && setPauseMode(!pauseMode);
   };
 
-
   /**
    * Logic for the workout flow
    */
@@ -114,14 +112,12 @@ export const FreeTabataProvider = ({ children }) => {
   useEffect(() => {
     // In this first approach, the prepare calls the work when it ends
     const prepareCountDown = () => {
-      // if (prepare === prepareInit){
-      //   audio.play();
-      // }
-      if ( prepare > 0 && prepare < 4){
-        audio.play();
+
+      if (prepare > 0 && prepare < 4) {
+        !mute && audio.play();
       }
       if (prepare === 0) {
-        setFlow('work');
+        setFlow("work");
         workCountDown();
       } else {
         const interval = setTimeout(() => {
@@ -132,30 +128,29 @@ export const FreeTabataProvider = ({ children }) => {
     };
     // In this first approach, the work calls the rest when it ends
     const workCountDown = () => {
-      if (work === workInit){
+      if (work === workInit) {
         // workaround to check if it can be listened in Iphone
         setTimeout(() => {
-          audioGo.play();
+          !mute && audioGo.play();
         }, 1);
-        // audioGo.play();
-      } else if ( work > 0 && work < 4){
-        audio.play();
+      } else if (work > 0 && work < 4) {
+        !mute && audio.play();
       }
       if (work === 0) {
         if (cycles === 1 && tabatas === 1) {
-          audioVictory.play()
+          !mute && audioVictory.play();
           setPrepare(prepareInit);
           setWork(workInit);
           setRest(restInit);
           setCycles(cyclesInit);
           setTabatas(tabatasInit);
-          setFlow('prepare');
+          setFlow("prepare");
           setGeneralMode(false);
         } else {
-          setFlow('rest')
+          setFlow("rest");
           restCountDown();
         }
-        } else {
+      } else {
         const interval = setTimeout(() => {
           setWork(work - 1);
         }, 1000);
@@ -165,13 +160,13 @@ export const FreeTabataProvider = ({ children }) => {
 
     // In this first approach, the work calls the rest when it ends
     const restCountDown = () => {
-        if (rest === restInit){
-          audioRest.play();
-        } else if ( rest > 0 && rest < 4){
-          audio.play();
-        }
-        if (rest === 0) {
-        setFlow('work');
+      if (rest === restInit) {
+        !mute && audioRest.play();
+      } else if (rest > 0 && rest < 4) {
+        !mute && audio.play();
+      }
+      if (rest === 0) {
+        setFlow("work");
         // While there are active cycles, the work-rest timers are reset and the cycle count is decreased
         if (cycles > 1) {
           setWork(workInit);
@@ -182,8 +177,7 @@ export const FreeTabataProvider = ({ children }) => {
           setWork(workInit);
           setRest(restInit);
           setTabatas(tabatas - 1);
-        } 
-
+        }
       } else {
         const interval = setTimeout(() => {
           setRest(rest - 1);
@@ -195,10 +189,27 @@ export const FreeTabataProvider = ({ children }) => {
     // This triggers the full cycle prepare-work-rest
     if (generalMode && !pauseMode) {
       prepareCountDown();
-    } 
-
-  }, [generalMode, prepare, work, rest, pauseMode, cycles, tabatas, workInit, restInit, cyclesInit, prepareInit, tabatasInit, audioBeep, audioGo, audioRest, audioVictory, audioStop, audio]);
-
+    }
+  }, [
+    generalMode,
+    prepare,
+    work,
+    rest,
+    pauseMode,
+    cycles,
+    tabatas,
+    workInit,
+    restInit,
+    cyclesInit,
+    prepareInit,
+    tabatasInit,
+    audioBeep,
+    audioGo,
+    audioRest,
+    audioVictory,
+    audioStop,
+    audio,
+  ]);
 
   /**
    * States and handlers to be provided by the Context
@@ -228,7 +239,8 @@ export const FreeTabataProvider = ({ children }) => {
         cyclesInit,
         handleSetcycles,
         flow,
-        handleVolume
+        handleVolume,
+        mute,
       }}
     >
       {children}
