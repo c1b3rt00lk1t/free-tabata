@@ -15,7 +15,7 @@ export const FreeTabataProvider = ({ children }) => {
   const [audioBeep] = useState(new Audio(beep));
   const [audioRest] = useState(new Audio(restaudio));
   const [audioGo] = useState(new Audio(go));
-  const [audioStop, setStop] = useState(new Audio(stop));
+  const [audioStop] = useState(new Audio(stop));
   const [audioVictory] = useState(new Audio(victory));
  
   
