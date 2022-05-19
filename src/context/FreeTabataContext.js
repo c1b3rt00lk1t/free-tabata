@@ -28,7 +28,6 @@ export const FreeTabataProvider = ({ children }) => {
   const [timer, setTimer] = useState();
   const [flow,setFlow] = useState('prepare');
 
-
   /**
    * Logic to set the initial values before starting the workout
    */
@@ -94,6 +93,7 @@ export const FreeTabataProvider = ({ children }) => {
   useEffect(() => {
     // In this first approach, the prepare calls the work when it ends
     const prepareCountDown = () => {
+      
       if (prepare === 0) {
         setFlow('work');
         workCountDown();
@@ -155,6 +155,7 @@ export const FreeTabataProvider = ({ children }) => {
     // This triggers the full cycle prepare-work-rest
     if (generalMode && !pauseMode) {
       prepareCountDown();
+      
     } 
 
   }, [generalMode, prepare, work, rest, pauseMode, cycles, tabatas, workInit, restInit, cyclesInit, prepareInit, tabatasInit]);
