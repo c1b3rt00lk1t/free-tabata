@@ -244,7 +244,7 @@ body{
 
     .tabatas,.cycles{
         width: calc(var(--large-screen-width)/2.4);
-        border-radius: 1vh;
+
         margin: 1.5vh 0.5vh;
         padding-bottom: 1.5vh;
         border-width: 0.2vw;
