@@ -195,7 +195,7 @@ export const FreeTabataProvider = ({ children }) => {
       prepareCountDown();
     } 
 
-  }, [generalMode, prepare, work, rest, pauseMode, cycles, tabatas, workInit, restInit, cyclesInit, prepareInit, tabatasInit, audioBeep, audioGo, audioRest, audioVictory, audioStop]);
+  }, [generalMode, prepare, work, rest, pauseMode, cycles, tabatas, workInit, restInit, cyclesInit, prepareInit, tabatasInit, audioBeep, audioGo, audioRest, audioVictory, audioStop, audio]);
 
 
   /**
