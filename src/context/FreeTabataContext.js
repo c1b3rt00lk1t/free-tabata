@@ -17,6 +17,7 @@ export const FreeTabataProvider = ({ children }) => {
   const [audioGo] = useState(new Audio(go));
   const [audioStop] = useState(new Audio(stop));
   const [audioVictory] = useState(new Audio(victory));
+  const [audio, setAudio] = useState();
  
   
   // default values for testing
@@ -88,6 +89,7 @@ export const FreeTabataProvider = ({ children }) => {
       setPauseMode(false);
       setFlow('prepare');
       audioStop.play();
+      setAudio(new Audio(go));
     }
     // In any case, the mode is toggled
     setGeneralMode(!generalMode);
@@ -110,6 +112,7 @@ export const FreeTabataProvider = ({ children }) => {
   useEffect(() => {
     // In this first approach, the prepare calls the work when it ends
     const prepareCountDown = () => {
+      audio.play();
       if ( prepare > 0 && prepare < 4){
         audioBeep.play();
         // another workaround try to overcome iphone safari limitations
