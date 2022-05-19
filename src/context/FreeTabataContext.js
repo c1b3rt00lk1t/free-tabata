@@ -190,26 +190,7 @@ export const FreeTabataProvider = ({ children }) => {
     if (generalMode && !pauseMode) {
       prepareCountDown();
     }
-  }, [
-    generalMode,
-    prepare,
-    work,
-    rest,
-    pauseMode,
-    cycles,
-    tabatas,
-    workInit,
-    restInit,
-    cyclesInit,
-    prepareInit,
-    tabatasInit,
-    audioBeep,
-    audioGo,
-    audioRest,
-    audioVictory,
-    audioStop,
-    audio,
-  ]);
+  }, [generalMode, prepare, work, rest, pauseMode, cycles, tabatas, workInit, restInit, cyclesInit, prepareInit, tabatasInit, audioBeep, audioGo, audioRest, audioVictory, audioStop, audio, mute]);
 
   /**
    * States and handlers to be provided by the Context
