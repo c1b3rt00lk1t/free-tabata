@@ -141,6 +141,23 @@ body{
     text-align: center;
 }
 
+/* DONE BUTTON */
+
+.doneBtn{
+    width: var(--mobile-width);
+    height: calc(var(--startStopBtnHeight)/1.5);
+    border-radius: var(--mobile-border-radius);
+    margin: 0.5vh;
+
+    color: rgb(157, 156, 156);
+    background-color: rgb(25, 24, 24);
+
+    font-size: 4vh;
+    text-align: center;
+    line-height: calc(var(--startStopBtnHeight)/1.5);
+}
+
+
 
 /* Adjustment for wider screens */
 

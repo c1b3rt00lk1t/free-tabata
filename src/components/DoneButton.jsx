@@ -10,7 +10,7 @@ const DoneButton = () => {
 
 
   return (
-    <div onClick={handleNavigate} className='startStopBtn'>Done</div>
+    <div onClick={handleNavigate} className='doneBtn'>DONE</div>
   )
 }
 
