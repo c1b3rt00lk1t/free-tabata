@@ -192,6 +192,10 @@ export const FreeTabataProvider = ({ children }) => {
 
     //
     const waitCountDown = () => {
+
+      if (wait > 0 && wait < 4) {
+        !mute && audio.play();
+      } 
       if (wait === 0) {
         setFlow("work");    
         setWait(NR_WAIT);    
