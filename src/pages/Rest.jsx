@@ -1,12 +1,12 @@
 import React from 'react'
 import DefaultTimings from "../components/DefaultTimings";
-import Display from "../components/Display";
+import DisplayCountdown from "../components/DisplayCountdown";
 import DoneButton from "../components/DoneButton";
 
 const Rest = () => {
   return (
     <div className='verticalContainer'>
-      <Display type='rest'/>
+      <DisplayCountdown type='rest'/>
       <div className="horizontalContainer">
         <DefaultTimings type='rest' seconds={10}/>
         <DefaultTimings type='rest' seconds={20}/>

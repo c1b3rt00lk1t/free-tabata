@@ -3,7 +3,7 @@ import FreeTabataContext from "../context/FreeTabataContext";
 
 
 
-const Display = ({type}) => {
+const DisplayCountdown = ({type}) => {
 
   const context = useContext(FreeTabataContext);
   const countdown = context[type];
@@ -16,4 +16,4 @@ const Display = ({type}) => {
   )
 }
 
-export default Display
+export default DisplayCountdown
