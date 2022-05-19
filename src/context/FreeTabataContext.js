@@ -19,7 +19,7 @@ export const FreeTabataProvider = ({ children }) => {
   const [audioVictory] = useState(new Audio(victory));
   const [audio, setAudio] = useState();
   
-  const handleVolume = () => {setAudio(new Audio(go))};
+  const handleVolume = () => {setAudio(new Audio(beep))};
  
   
   // default values for testing
@@ -118,7 +118,7 @@ export const FreeTabataProvider = ({ children }) => {
       //   audio.play();
       // }
       if ( prepare > 0 && prepare < 4){
-        audioBeep.play();
+        audio.play();
       }
       if (prepare === 0) {
         setFlow('work');
