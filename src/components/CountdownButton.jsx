@@ -10,12 +10,12 @@ const CountdownButton = ({ type }) => {
 
   // Preparing to navigate in case of a click
   const navigate = useNavigate();
-  const handleSet = () => {
+  const handleNavigate = () => {
     navigate(`/${type}`)
   };
 
   return (
-    <div onClick={handleSet} className={`${type} countdownBtn `}>
+    <div onClick={handleNavigate} className={`${type} countdownBtn `}>
         <div className="countdownBtnItems">{type.toUpperCase()}</div>
         <div className="countdownBtnItems">{`${String(Math.floor(countdown/60)).padStart(2,'0')}:${String(countdown%60).padStart(2,'0')}`}</div>
     </div>
