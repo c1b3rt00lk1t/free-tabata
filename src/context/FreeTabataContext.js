@@ -26,6 +26,7 @@ export const FreeTabataProvider = ({ children }) => {
   const [generalMode, setGeneralMode] = useState(false); // it could be stopped (false), on-going (true)
   const [pauseMode, setPauseMode] = useState(false); // it could be paused (false), on-going (true)
   const [timer, setTimer] = useState();
+  const [flow,setFlow] = useState('prepare');
 
 
   /**
@@ -70,6 +71,7 @@ export const FreeTabataProvider = ({ children }) => {
       setCycles(cyclesInit);
       setTabatas(tabatasInit);
       setPauseMode(false);
+      setFlow('prepare');
     }
     // In any case, the mode is toggled
     setGeneralMode(!generalMode);
@@ -93,6 +95,7 @@ export const FreeTabataProvider = ({ children }) => {
     // In this first approach, the prepare calls the work when it ends
     const prepareCountDown = () => {
       if (prepare === 0) {
+        setFlow('work');
         workCountDown();
       } else {
         const interval = setTimeout(() => {
@@ -104,6 +107,7 @@ export const FreeTabataProvider = ({ children }) => {
     // In this first approach, the work calls the rest when it ends
     const workCountDown = () => {
       if (work === 0) {
+        setFlow('rest')
         restCountDown();
       } else {
         const interval = setTimeout(() => {
@@ -116,6 +120,7 @@ export const FreeTabataProvider = ({ children }) => {
     // In this first approach, the work calls the rest when it ends
     const restCountDown = () => {
       if (rest === 0) {
+        setFlow('work');
         // While there are active cycles, the work-rest timers are reset and the cycle count is decreased
         if (cycles > 1) {
           setWork(workInit);
@@ -141,7 +146,8 @@ export const FreeTabataProvider = ({ children }) => {
     // This triggers the full cycle prepare-work-rest
     if (generalMode && !pauseMode) {
       prepareCountDown();
-    }
+    } 
+
   }, [generalMode, prepare, work, rest, pauseMode, cycles, tabatas, workInit, restInit, cyclesInit]);
 
 
@@ -171,7 +177,8 @@ export const FreeTabataProvider = ({ children }) => {
         tabatasInit,
         handleSettabatas,
         cyclesInit,
-        handleSetcycles
+        handleSetcycles,
+        flow
       }}
     >
       {children}
