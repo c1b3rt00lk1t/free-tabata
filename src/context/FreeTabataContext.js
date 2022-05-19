@@ -15,7 +15,7 @@ export const FreeTabataProvider = ({ children }) => {
   const [audioBeep] = useState(new Audio(beep));
   const [audioRest] = useState(new Audio(restaudio));
   const [audioGo] = useState(new Audio(go));
-  const [audioStop] = useState(new Audio(stop));
+  const [audioStop, setStop] = useState(new Audio(stop));
   const [audioVictory] = useState(new Audio(victory));
  
   
@@ -112,6 +112,8 @@ export const FreeTabataProvider = ({ children }) => {
     const prepareCountDown = () => {
       if ( prepare > 0 && prepare < 4){
         audioBeep.play();
+        // another workaround try to overcome iphone safari limitations
+        audioStop.play();
       }
       if (prepare === 0) {
         setFlow('work');
