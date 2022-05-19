@@ -139,7 +139,7 @@ export const FreeTabataProvider = ({ children }) => {
         }, 1);
         // audioGo.play();
       } else if ( work > 0 && work < 4){
-        audioBeep.play();
+        audio.play();
       }
       if (work === 0) {
         if (cycles === 1 && tabatas === 1) {
@@ -168,7 +168,7 @@ export const FreeTabataProvider = ({ children }) => {
         if (rest === restInit){
           audioRest.play();
         } else if ( rest > 0 && rest < 4){
-          audioBeep.play();
+          audio.play();
         }
         if (rest === 0) {
         setFlow('work');
