@@ -209,6 +209,24 @@ body{
     line-height: calc(var(--startStopBtnHeight)*0.5);
 }
 
+.controlPlusMinusContainer{
+    justify-content: center;
+}
+
+
+.controlPlusMinusBtn{
+    color: rgb(157, 156, 156);
+    background-color: rgb(25, 24, 24);
+    width: calc(var(--mobile-width)/4.1);
+    height: calc(var(--startStopBtnHeight));
+    border-radius: var(--mobile-border-radius);
+    margin: 0.5vh;
+    text-align: center;
+    line-height: calc(var(--startStopBtnHeight)*0.9);
+
+    font-size: 8vh;
+    font-weight: bold;
+}
 
 @keyframes flickerAnimation {
     0%   { opacity:1; }
@@ -285,6 +303,9 @@ body{
         border-width: 0.2vw;
     }
 
+    .wait{
+        border-width: 0.2vw;
+    }
 
     /* TABATAS-CYCLES*/
 

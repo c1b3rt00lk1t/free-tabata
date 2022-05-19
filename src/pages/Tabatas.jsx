@@ -2,6 +2,7 @@ import React from 'react'
 import DefaultCycles from '../components/DefaultCycles';
 import DisplayCycle from "../components/DisplayCycle";
 import DoneButton from "../components/DoneButton";
+import ControlsPlusMinus from '../components/ControlsPlusMinus';
 
 const Tabatas = () => {
   return (
@@ -12,6 +13,10 @@ const Tabatas = () => {
       <DefaultCycles type='tabatas' number={5}/>
       <DefaultCycles type='tabatas' number={10}/>
 
+      </div>
+      <div className="horizontalContainer controlPlusMinusContainer">
+        <ControlsPlusMinus type="tabatas" sign="+1" />
+        <ControlsPlusMinus type="tabatas" sign="-1" />
       </div>
       <DoneButton/>
     </div>

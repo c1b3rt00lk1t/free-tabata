@@ -193,7 +193,6 @@ export const FreeTabataProvider = ({ children }) => {
     //
     const waitCountDown = () => {
       if (wait === 0) {
-        console.log('hello')
         setFlow("work");    
         setWait(NR_WAIT);    
           setCycles(cyclesInit);
