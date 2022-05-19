@@ -1,9 +1,23 @@
 import { createContext, useState, useEffect } from "react";
 
+import beep from "../audio/beep.wav"
+import restaudio from "../audio/rest.wav"
+import go from "../audio/go.wav"
+import stop from "../audio/stop.wav"
+import victory from "../audio/victory.wav"
+
 
 const FreeTabataContext = createContext();
 
 export const FreeTabataProvider = ({ children }) => {
+
+  // sounds used in the app
+  const [audioBeep] = useState(new Audio(beep));
+  const [audioRest] = useState(new Audio(restaudio));
+  const [audioGo] = useState(new Audio(go));
+  const [audioStop] = useState(new Audio(stop));
+  const [audioVictory] = useState(new Audio(victory));
+
   // default values for testing
   const NR_PREPARE = 5;
   const NR_WORK = 20;
@@ -71,6 +85,7 @@ export const FreeTabataProvider = ({ children }) => {
       setTabatas(tabatasInit);
       setPauseMode(false);
       setFlow('prepare');
+      audioStop.play();
     }
     // In any case, the mode is toggled
     setGeneralMode(!generalMode);
@@ -93,7 +108,9 @@ export const FreeTabataProvider = ({ children }) => {
   useEffect(() => {
     // In this first approach, the prepare calls the work when it ends
     const prepareCountDown = () => {
-      
+      if ( prepare > 0 && prepare < 4){
+        audioBeep.play();
+      }
       if (prepare === 0) {
         setFlow('work');
         workCountDown();
@@ -106,9 +123,14 @@ export const FreeTabataProvider = ({ children }) => {
     };
     // In this first approach, the work calls the rest when it ends
     const workCountDown = () => {
+      if (work === workInit){
+        audioGo.play();
+      } else if ( work > 0 && work < 4){
+        audioBeep.play();
+      }
       if (work === 0) {
-
         if (cycles === 1 && tabatas === 1) {
+          audioVictory.play()
           setPrepare(prepareInit);
           setWork(workInit);
           setRest(restInit);
@@ -130,7 +152,12 @@ export const FreeTabataProvider = ({ children }) => {
 
     // In this first approach, the work calls the rest when it ends
     const restCountDown = () => {
-      if (rest === 0) {
+        if (rest === restInit){
+          audioRest.play();
+        } else if ( rest > 0 && rest < 4){
+          audioBeep.play();
+        }
+        if (rest === 0) {
         setFlow('work');
         // While there are active cycles, the work-rest timers are reset and the cycle count is decreased
         if (cycles > 1) {
@@ -155,10 +182,9 @@ export const FreeTabataProvider = ({ children }) => {
     // This triggers the full cycle prepare-work-rest
     if (generalMode && !pauseMode) {
       prepareCountDown();
-      
     } 
 
-  }, [generalMode, prepare, work, rest, pauseMode, cycles, tabatas, workInit, restInit, cyclesInit, prepareInit, tabatasInit]);
+  }, [generalMode, prepare, work, rest, pauseMode, cycles, tabatas, workInit, restInit, cyclesInit, prepareInit, tabatasInit, audioBeep, audioGo, audioRest, audioVictory]);
 
 
   /**
