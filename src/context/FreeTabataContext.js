@@ -18,6 +18,8 @@ export const FreeTabataProvider = ({ children }) => {
   const [audioStop] = useState(new Audio(stop));
   const [audioVictory] = useState(new Audio(victory));
   const [audio, setAudio] = useState();
+  
+  const handleVolume = () => {setAudio(new Audio(go))};
  
   
   // default values for testing
@@ -56,7 +58,6 @@ export const FreeTabataProvider = ({ children }) => {
   const handleSetwork = (nr) => ( ) => {
     setWorkInit(nr);
     setWork(nr);
-    setAudio(new Audio(go));
   };
 
   const handleSetrest =  (nr) =>( ) => {
@@ -226,7 +227,8 @@ export const FreeTabataProvider = ({ children }) => {
         handleSettabatas,
         cyclesInit,
         handleSetcycles,
-        flow
+        flow,
+        handleVolume
       }}
     >
       {children}
