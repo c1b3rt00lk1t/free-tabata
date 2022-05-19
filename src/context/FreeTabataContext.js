@@ -56,6 +56,7 @@ export const FreeTabataProvider = ({ children }) => {
   const handleSetwork = (nr) => ( ) => {
     setWorkInit(nr);
     setWork(nr);
+    setAudio(new Audio(go));
   };
 
   const handleSetrest =  (nr) =>( ) => {
@@ -89,7 +90,7 @@ export const FreeTabataProvider = ({ children }) => {
       setPauseMode(false);
       setFlow('prepare');
       audioStop.play();
-      setAudio(new Audio(go));
+      
     }
     // In any case, the mode is toggled
     setGeneralMode(!generalMode);
