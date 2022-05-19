@@ -107,9 +107,20 @@ export const FreeTabataProvider = ({ children }) => {
     // In this first approach, the work calls the rest when it ends
     const workCountDown = () => {
       if (work === 0) {
-        setFlow('rest')
-        restCountDown();
-      } else {
+
+        if (cycles === 1 && tabatas === 1) {
+          setPrepare(prepareInit);
+          setWork(workInit);
+          setRest(restInit);
+          setCycles(cyclesInit);
+          setTabatas(tabatasInit);
+          setFlow('prepare');
+          setGeneralMode(false);
+        } else {
+          setFlow('rest')
+          restCountDown();
+        }
+        } else {
         const interval = setTimeout(() => {
           setWork(work - 1);
         }, 1000);
@@ -131,10 +142,8 @@ export const FreeTabataProvider = ({ children }) => {
           setWork(workInit);
           setRest(restInit);
           setTabatas(tabatas - 1);
-        } else if (cycles === 1 && tabatas === 1) {
-          setCycles(0);
-          setTabatas(0);
-        }
+        } 
+
       } else {
         const interval = setTimeout(() => {
           setRest(rest - 1);
@@ -148,7 +157,7 @@ export const FreeTabataProvider = ({ children }) => {
       prepareCountDown();
     } 
 
-  }, [generalMode, prepare, work, rest, pauseMode, cycles, tabatas, workInit, restInit, cyclesInit]);
+  }, [generalMode, prepare, work, rest, pauseMode, cycles, tabatas, workInit, restInit, cyclesInit, prepareInit, tabatasInit]);
 
 
   /**
