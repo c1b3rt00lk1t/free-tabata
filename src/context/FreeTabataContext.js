@@ -11,8 +11,8 @@ export const FreeTabataProvider = ({ children }) => {
   const [prepareInit, setPrepareInit] = useState(NR_TIME);
   const [workInit, setWorkInit] = useState(NR_TIME);
   const [restInit, setRestInit] = useState(NR_TIME);
-  // const [tabatasInit, setTabatasInit] = useState(NR_TBT);
-  // const [cyclesInit, setCyclesInit] = useState(NR_TBT);
+  const [tabatasInit, setTabatasInit] = useState(NR_TBT);
+  const [cyclesInit, setCyclesInit] = useState(NR_TBT);
 
   const [prepare, setPrepare] = useState(NR_TIME);
   const [work, setWork] = useState(NR_TIME);
@@ -42,6 +42,14 @@ export const FreeTabataProvider = ({ children }) => {
     setRest(nr);
   };
 
+  const handleSettabatas =  (nr) =>( ) => {
+    setTabatasInit(nr);
+    setTabatas(nr);
+  };
+  const handleSetcycles =  (nr) =>( ) => {
+    setCyclesInit(nr);
+    setCycles(nr);
+  };
 
 
   /**
@@ -155,7 +163,11 @@ export const FreeTabataProvider = ({ children }) => {
         workInit,
         handleSetwork,
         restInit,
-        handleSetrest
+        handleSetrest,
+        tabatasInit,
+        handleSettabatas,
+        cyclesInit,
+        handleSetcycles
       }}
     >
       {children}
