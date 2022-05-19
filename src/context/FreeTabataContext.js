@@ -1,19 +1,18 @@
 import { createContext, useState, useEffect } from "react";
 
+
 const FreeTabataContext = createContext();
 
 export const FreeTabataProvider = ({ children }) => {
-  // const [prepare, setPrepare] = useState(10);
-  // const [work, setWork] = useState(20);
-  // const [rest, setRest] = useState(10);
-  // const [tabatas, setTabatas] = useState(1);
-  // const [cycles, setCycles] = useState(8);
-  // const [generalMode, setGeneralMode] = useState(0); // it could be stopped (0), on-going (1), paused (2)
-  // const [cycleMode, setCycleMode] = useState("none"); // it could be none, prepare, work, rest
-
   // default values for testing
   const NR_TIME = 2;
   const NR_TBT = 2;
+
+  const [prepareInit, setPrepareInit] = useState(NR_TIME);
+  const [workInit, setWorkInit] = useState(NR_TIME);
+  const [restInit, setRestInit] = useState(NR_TIME);
+  // const [tabatasInit, setTabatasInit] = useState(NR_TBT);
+  // const [cyclesInit, setCyclesInit] = useState(NR_TBT);
 
   const [prepare, setPrepare] = useState(NR_TIME);
   const [work, setWork] = useState(NR_TIME);
@@ -23,6 +22,31 @@ export const FreeTabataProvider = ({ children }) => {
   const [generalMode, setGeneralMode] = useState(false); // it could be stopped (false), on-going (true)
   const [pauseMode, setPauseMode] = useState(false); // it could be paused (false), on-going (true)
   const [timer, setTimer] = useState();
+
+
+  /**
+   * Logic to set the initial values before starting the workout
+   */
+  const handleSetprepare = (nr) => ( ) => {
+    setPrepareInit(nr);
+    setPrepare(nr);
+  };
+
+  const handleSetwork = (nr) => ( ) => {
+    setWorkInit(nr);
+    setWork(nr);
+  };
+
+  const handleSetrest =  (nr) =>( ) => {
+    setRestInit(nr);
+    setRest(nr);
+  };
+
+
+
+  /**
+   * Logic to start, pause and stop the workout
+   */
 
   const handleStartStop = () => {
     // When the Start/Stop button is clicked and the current mode is working, it stops the timer and resets
@@ -47,6 +71,11 @@ export const FreeTabataProvider = ({ children }) => {
     // If the generalMode is active, the pause mode is toggled
     generalMode && setPauseMode(!pauseMode);
   };
+
+
+  /**
+   * Logic for the workout flow
+   */
 
   useEffect(() => {
     // In this first approach, the prepare calls the work when it ends
@@ -87,7 +116,7 @@ export const FreeTabataProvider = ({ children }) => {
           setTabatas(tabatas - 1);
         } else if (cycles === 1 && tabatas === 1) {
           setCycles(0);
-          setTabatas(0)
+          setTabatas(0);
         }
       } else {
         const interval = setTimeout(() => {
@@ -103,6 +132,11 @@ export const FreeTabataProvider = ({ children }) => {
     }
   }, [generalMode, prepare, work, rest, pauseMode, cycles, tabatas]);
 
+
+  /**
+   * States and handlers to be provided by the Context
+   */
+
   return (
     <FreeTabataContext.Provider
       value={{
@@ -116,6 +150,12 @@ export const FreeTabataProvider = ({ children }) => {
         pauseMode,
         handleStartPause,
         timer,
+        prepareInit,
+        handleSetprepare,
+        workInit,
+        handleSetwork,
+        restInit,
+        handleSetrest
       }}
     >
       {children}
