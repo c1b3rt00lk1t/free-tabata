@@ -17,7 +17,8 @@ export const FreeTabataProvider = ({ children }) => {
   const [audioGo] = useState(new Audio(go));
   const [audioStop] = useState(new Audio(stop));
   const [audioVictory] = useState(new Audio(victory));
-
+ 
+  
   // default values for testing
   const NR_PREPARE = 5;
   const NR_WORK = 20;
@@ -48,6 +49,7 @@ export const FreeTabataProvider = ({ children }) => {
   const handleSetprepare = (nr) => ( ) => {
     setPrepareInit(nr);
     setPrepare(nr);
+    
   };
 
   const handleSetwork = (nr) => ( ) => {
@@ -124,7 +126,11 @@ export const FreeTabataProvider = ({ children }) => {
     // In this first approach, the work calls the rest when it ends
     const workCountDown = () => {
       if (work === workInit){
-        audioGo.play();
+        // workaround to check if it can be listened in Iphone
+        setTimeout(() => {
+          audioGo.play();
+        }, 1);
+        // audioGo.play();
       } else if ( work > 0 && work < 4){
         audioBeep.play();
       }
