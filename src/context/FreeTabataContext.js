@@ -5,20 +5,24 @@ const FreeTabataContext = createContext();
 
 export const FreeTabataProvider = ({ children }) => {
   // default values for testing
-  const NR_TIME = 2;
-  const NR_TBT = 2;
+  const NR_PREPARE = 5;
+  const NR_WORK = 20;
+  const NR_REST = 10;
+  
+  const NR_TABATAS = 1;
+  const NR_CYCLES = 8;
 
-  const [prepareInit, setPrepareInit] = useState(NR_TIME);
-  const [workInit, setWorkInit] = useState(NR_TIME);
-  const [restInit, setRestInit] = useState(NR_TIME);
-  const [tabatasInit, setTabatasInit] = useState(NR_TBT);
-  const [cyclesInit, setCyclesInit] = useState(NR_TBT);
+  const [prepareInit, setPrepareInit] = useState(NR_PREPARE);
+  const [workInit, setWorkInit] = useState(NR_WORK);
+  const [restInit, setRestInit] = useState(NR_REST);
+  const [tabatasInit, setTabatasInit] = useState(NR_TABATAS);
+  const [cyclesInit, setCyclesInit] = useState(NR_CYCLES);
 
-  const [prepare, setPrepare] = useState(NR_TIME);
-  const [work, setWork] = useState(NR_TIME);
-  const [rest, setRest] = useState(NR_TIME);
-  const [tabatas, setTabatas] = useState(NR_TBT);
-  const [cycles, setCycles] = useState(NR_TBT);
+  const [prepare, setPrepare] = useState(NR_PREPARE);
+  const [work, setWork] = useState(NR_WORK);
+  const [rest, setRest] = useState(NR_REST);
+  const [tabatas, setTabatas] = useState(NR_TABATAS);
+  const [cycles, setCycles] = useState(NR_CYCLES);
   const [generalMode, setGeneralMode] = useState(false); // it could be stopped (false), on-going (true)
   const [pauseMode, setPauseMode] = useState(false); // it could be paused (false), on-going (true)
   const [timer, setTimer] = useState();
@@ -60,11 +64,11 @@ export const FreeTabataProvider = ({ children }) => {
     // When the Start/Stop button is clicked and the current mode is working, it stops the timer and resets
     if (generalMode) {
       clearTimeout(timer);
-      setPrepare(NR_TIME);
-      setWork(NR_TIME);
-      setRest(NR_TIME);
-      setCycles(NR_TBT);
-      setTabatas(NR_TBT);
+      setPrepare(prepareInit);
+      setWork(workInit);
+      setRest(restInit);
+      setCycles(cyclesInit);
+      setTabatas(tabatasInit);
       setPauseMode(false);
     }
     // In any case, the mode is toggled
@@ -114,13 +118,13 @@ export const FreeTabataProvider = ({ children }) => {
       if (rest === 0) {
         // While there are active cycles, the work-rest timers are reset and the cycle count is decreased
         if (cycles > 1) {
-          setWork(NR_TIME);
-          setRest(NR_TIME);
+          setWork(workInit);
+          setRest(restInit);
           setCycles(cycles - 1);
         } else if (cycles === 1 && tabatas > 1) {
-          setCycles(NR_TBT);
-          setWork(NR_TIME);
-          setRest(NR_TIME);
+          setCycles(cyclesInit);
+          setWork(workInit);
+          setRest(restInit);
           setTabatas(tabatas - 1);
         } else if (cycles === 1 && tabatas === 1) {
           setCycles(0);
@@ -138,7 +142,7 @@ export const FreeTabataProvider = ({ children }) => {
     if (generalMode && !pauseMode) {
       prepareCountDown();
     }
-  }, [generalMode, prepare, work, rest, pauseMode, cycles, tabatas]);
+  }, [generalMode, prepare, work, rest, pauseMode, cycles, tabatas, workInit, restInit, cyclesInit]);
 
 
   /**
