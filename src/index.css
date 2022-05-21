@@ -270,7 +270,7 @@ body{
 
 /* Adjustment for medium screens */
 
-@media (min-width: 640px) and (max-width: 1000px) { 
+@media (min-width: 640px) and (max-width: 1465px) { 
 
     .horizontalContainer{
         width: var(--medium-screen-width);
@@ -376,7 +376,7 @@ body{
 
 /* Adjustment for wider screens */
 
-@media (min-width: 1000px) { 
+@media (min-width: 1465px) { 
 
     .horizontalContainer{
         width: var(--large-screen-width);
