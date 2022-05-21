@@ -9,7 +9,7 @@ const About = () => {
           <b>Tabata Free</b> - 1.0.0
         </h1>
         <h2>
-          <b>Offline mode</b>: install this app as a desktop app or a mobile app
+          <b>Offline mode</b>: install this PWA as a desktop app or a mobile app
           and enjoy the training offline!
         </h2>
         <p>
