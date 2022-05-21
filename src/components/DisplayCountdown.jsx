@@ -6,7 +6,7 @@ import FreeTabataContext from "../context/FreeTabataContext";
 const DisplayCountdown = ({type}) => {
 
   const context = useContext(FreeTabataContext);
-  const countdown = context[type];
+  const countdown = context[type].current;
   const generalMode = context['generalMode'];
 
   return (

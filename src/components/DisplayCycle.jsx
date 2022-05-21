@@ -6,7 +6,7 @@ import FreeTabataContext from "../context/FreeTabataContext";
 const DisplayCycle = ({type}) => {
 
   const context = useContext(FreeTabataContext);
-  const cycle = context[type];
+  const cycle = context[type].current;
 
   return (
     <div className={`${type} display`}>

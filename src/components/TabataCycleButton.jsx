@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 
 const TabataCycleButton = ({type}) => {
   const context = useContext(FreeTabataContext);
-  const number = context[type];
+  const number = context[type].current;
 
   // Preparing to navigate in case of a click
   const navigate = useNavigate();

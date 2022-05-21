@@ -5,7 +5,7 @@ import FreeTabataContext from "../context/FreeTabataContext";
 const ControlsPlusMinus = ({ type, sign }) => {
 
   const context = useContext(FreeTabataContext);
-  const result = context[type]+ +sign;
+  const result = context[type].current+ +sign;
 
   const number = (result) => {
     if (type === 'tabatas' || type === 'cycles'){

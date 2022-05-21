@@ -33,18 +33,13 @@ export const FreeTabataProvider = ({ children }) => {
   const NR_TABATAS = 1;
   const NR_CYCLES = 8;
 
-  const [prepareInit, setPrepareInit] = useState(NR_PREPARE);
-  const [workInit, setWorkInit] = useState(NR_WORK);
-  const [restInit, setRestInit] = useState(NR_REST);
-  const [tabatasInit, setTabatasInit] = useState(NR_TABATAS);
-  const [cyclesInit, setCyclesInit] = useState(NR_CYCLES);
 
-  const [prepare, setPrepare] = useState(NR_PREPARE);
-  const [work, setWork] = useState(NR_WORK);
-  const [rest, setRest] = useState(NR_REST);
-  const [wait, setWait] = useState(NR_WAIT);
-  const [tabatas, setTabatas] = useState(NR_TABATAS);
-  const [cycles, setCycles] = useState(NR_CYCLES);
+  const [prepare, setPrepare] = useState({initial: NR_PREPARE, current: NR_PREPARE});
+  const [work, setWork] = useState({initial: NR_WORK, current: NR_WORK});
+  const [rest, setRest] = useState({initial: NR_REST, current: NR_REST});
+  const [wait, setWait] = useState({initial: NR_WAIT, current: NR_WAIT});
+  const [tabatas, setTabatas] = useState({initial: NR_TABATAS, current: NR_TABATAS});
+  const [cycles, setCycles] = useState({initial: NR_CYCLES, current: NR_CYCLES});
   const [generalMode, setGeneralMode] = useState(false); // it could be stopped (false), on-going (true)
   const [pauseMode, setPauseMode] = useState(false); // it could be paused (false), on-going (true)
   const [timer, setTimer] = useState();
@@ -55,11 +50,11 @@ export const FreeTabataProvider = ({ children }) => {
    */
 
   const setFunctions = {
-    prepare: (nr) => {setPrepare(nr); setPrepareInit(nr);},
-    work: (nr) => {setWork(nr); setWorkInit(nr);},
-    rest: (nr) => {setRest(nr);setRestInit(nr);}, 
-    tabatas: (nr) => {setTabatas(nr); setTabatasInit(nr);},
-    cycles: (nr) => {setCycles(nr); setCyclesInit(nr);}
+    prepare: (nr) => setPrepare({initial: nr, current: nr}),
+    work: (nr) => setWork({initial: nr, current: nr}),
+    rest: (nr) => setRest({initial: nr, current: nr}), 
+    tabatas: (nr) => setTabatas({initial: nr, current: nr}),
+    cycles: (nr) => setCycles({initial: nr, current: nr})
   }
 
   const handleSet = (type) => (nr) => () => {
@@ -77,12 +72,11 @@ export const FreeTabataProvider = ({ children }) => {
     if (generalMode) {
       clearTimeout(timer);
 
-      setPrepare(prepareInit);
-      setWork(workInit);
-      setRest(restInit);
-      setCycles(cyclesInit);
-      setTabatas(tabatasInit);
-
+      setPrepare({...prepare,current: prepare.initial});
+      setWork({...work,current: work.initial});
+      setRest({...rest,current: rest.initial});
+      setCycles({...cycles,current: cycles.initial});
+      setTabatas({...tabatas,current: tabatas.initial});
       setPauseMode(false);
       setFlow("prepare");
       !mute && audioStop.play();
@@ -105,8 +99,8 @@ export const FreeTabataProvider = ({ children }) => {
    */
 
    const setTimeoutTimer = (setFunction, type, setTimer) => {
-    const interval = setTimeout(() => {
-      setFunction(type - 1);
+    const interval = setTimeout(() => {    
+      setFunction({...type, current: type.current - 1});
     }, 1000);
     setTimer(interval);
   }
@@ -114,10 +108,10 @@ export const FreeTabataProvider = ({ children }) => {
   useEffect(() => {
     // In this first approach, the prepare calls the work when it ends
     const prepareCountDown = () => {
-      if (prepare > 0 && prepare < 4) {
+      if (prepare.current > 0 && prepare.current < 4) {
         !mute && audio.play();
       }
-      if (prepare === 0) {
+      if (prepare.current === 0) {
         setFlow("work");
         workCountDown();
       } else {
@@ -126,22 +120,22 @@ export const FreeTabataProvider = ({ children }) => {
     };
     // In this first approach, the work calls the rest when it ends
     const workCountDown = () => {
-      if (work === workInit) {
+      if (work.current === work.initial) {
           !mute && audioGo.play();
-      } else if (work > 0 && work < 4) {
+      } else if (work.current > 0 && work.current < 4) {
         !mute && audio.play();
       }
-      if (work === 0) {
-        if (cycles === 1 && tabatas === 1) {
+      if (work.current === 0) {
+        if (cycles.current === 1 && tabatas.current === 1) {
           !mute && audioVictory.play();
-          setPrepare(prepareInit);
-          setWork(workInit);
-          setRest(restInit);
-          setCycles(cyclesInit);
-          setTabatas(tabatasInit);
+          setPrepare({...prepare,current: prepare.initial});
+          setWork({...work,current: work.initial});
+          setRest({...rest,current: rest.initial});
+          setCycles({...cycles,current: cycles.initial});
+          setTabatas({...tabatas,current: tabatas.initial});
           setFlow("prepare");
           setGeneralMode(false);
-        } else if (cycles === 1 && tabatas > 1) {
+        } else if (cycles.current === 1 && tabatas.current > 1) {
           setFlow("wait");
           waitCountDown();
         } else {
@@ -155,23 +149,23 @@ export const FreeTabataProvider = ({ children }) => {
 
     // In this first approach, the work calls the rest when it ends
     const restCountDown = () => {
-      if (rest === restInit) {
+      if (rest.current === rest.initial) {
         !mute && audioRest.play();
-      } else if (rest > 0 && rest < 4) {
+      } else if (rest.current > 0 && rest.current < 4) {
         !mute && audio.play();
       }
-      if (rest === 0) {
+      if (rest.current === 0) {
         setFlow("work");
         // While there are active cycles, the work-rest timers are reset and the cycle count is decreased
         if (cycles > 1) {
-          setWork(workInit);
-          setRest(restInit);
-          setCycles(cycles - 1);
+          setWork({...work,current: work.initial});
+          setRest({...rest,current: rest.initial});
+          setCycles({...cycles,current: cycles.current -1});
         } else if (cycles === 1 && tabatas > 1) {
-          setCycles(cyclesInit);
-          setWork(workInit);
-          setRest(restInit);
-          setTabatas(tabatas - 1);
+          setCycles({...cycles,current: cycles.initial});
+          setWork({...work,current: work.initial});
+          setRest({...rest,current: rest.initial});
+          setTabatas({...tabatas,current: tabatas.current -1});
         }
       } else {
         setTimeoutTimer(setRest, rest, setTimer);
@@ -181,16 +175,16 @@ export const FreeTabataProvider = ({ children }) => {
     // At the end of the wait, the flow is set to work and the number of tabatas decreased by one
     const waitCountDown = () => {
 
-      if (wait > 0 && wait < 4) {
+      if (wait.current > 0 && wait.current < 4) {
         !mute && audio.play();
       } 
-      if (wait === 0) {
+      if (wait.current === 0) {
         setFlow("work");    
-        setWait(NR_WAIT);    
-        setCycles(cyclesInit);
-        setWork(workInit);
-        setRest(restInit);
-        setTabatas(tabatas - 1);
+        setWait({...wait,current: wait.initial});    
+        setCycles({...cycles,current: cycles.initial});
+        setWork({...work,current: work.initial});
+        setRest({...rest,current: rest.initial});
+        setTabatas({...tabatas,current: tabatas.current -1});
         
       } else {
         setTimeoutTimer(setWait, wait, setTimer);
@@ -209,11 +203,6 @@ export const FreeTabataProvider = ({ children }) => {
     pauseMode,
     cycles,
     tabatas,
-    workInit,
-    restInit,
-    cyclesInit,
-    prepareInit,
-    tabatasInit,
     audioGo,
     audioRest,
     audioVictory,
@@ -241,11 +230,6 @@ export const FreeTabataProvider = ({ children }) => {
         pauseMode,
         handleStartPause,
         timer,
-        prepareInit,
-        workInit,
-        restInit,
-        tabatasInit,
-        cyclesInit,
         flow,
         handleVolume,
         mute,

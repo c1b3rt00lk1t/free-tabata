@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom'
 const CountdownButton = ({ type }) => {
   // Getting the type from the context
   const context = useContext(FreeTabataContext);
-  const countdown = context[type];
+  const countdown = context[type].current;
 
   // Preparing to navigate in case of a click
   const navigate = useNavigate();
