@@ -157,11 +157,11 @@ export const FreeTabataProvider = ({ children }) => {
       if (rest.current === 0) {
         setFlow("work");
         // While there are active cycles, the work-rest timers are reset and the cycle count is decreased
-        if (cycles > 1) {
+        if (cycles.current > 1) {
           setWork({...work,current: work.initial});
           setRest({...rest,current: rest.initial});
           setCycles({...cycles,current: cycles.current -1});
-        } else if (cycles === 1 && tabatas > 1) {
+        } else if (cycles.current === 1 && tabatas.current > 1) {
           setCycles({...cycles,current: cycles.initial});
           setWork({...work,current: work.initial});
           setRest({...rest,current: rest.initial});

@@ -12,7 +12,6 @@ const DisplayCycle = ({type}) => {
     <div className={`${type} display`}>
         <div className=''>{type.toUpperCase()}</div>
         <div className="countdownDisplayItems">{String(cycle).padStart(2,'0')}</div>
-        {console.log(String(cycle).padStart(2,'0'))}
     </div>
   )
 }
