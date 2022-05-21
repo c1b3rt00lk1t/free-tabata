@@ -26,12 +26,12 @@ export const FreeTabataProvider = ({ children }) => {
 
   // default values for testing
   const NR_PREPARE = 4;
-  const NR_WORK = 4; //20
-  const NR_REST = 4; //10
-  const NR_WAIT = 6; //60
+  const NR_WORK = 20;//4; //20
+  const NR_REST = 10; //4; //10
+  const NR_WAIT = 60 // 6; //60
 
-  const NR_TABATAS = 2; // 1
-  const NR_CYCLES = 2; //8
+  const NR_TABATAS = 1; //2; // 1
+  const NR_CYCLES = 8 //2;; //8
 
   const [prepareInit, setPrepareInit] = useState(NR_PREPARE);
   const [workInit, setWorkInit] = useState(NR_WORK);
