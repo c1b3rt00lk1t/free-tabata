@@ -10,28 +10,28 @@ const FreeTabataContext = createContext();
 
 export const FreeTabataProvider = ({ children }) => {
   // sounds used in the app
-  const [audioBeep] = useState(new Audio(beep));
   const [audioRest] = useState(new Audio(restaudio));
   const [audioGo] = useState(new Audio(go));
   const [audioStop] = useState(new Audio(stop));
   const [audioVictory] = useState(new Audio(victory));
   const [audio, setAudio] = useState();
+  //enable sounds or disable them
   const [mute, setMute] = useState(true);
 
-  //important to trick the Safari Iphone autoplay restrictions
+  //important to trick the Safari Iphone autoplay restrictions (the issue persists anyway)
   const handleVolume = () => {
     setAudio(new Audio(beep));
     setMute(!mute);
   };
 
-  // default values for testing
+  // default starting values
   const NR_PREPARE = 4;
-  const NR_WORK = 20;//4; //20
-  const NR_REST = 10; //4; //10
-  const NR_WAIT = 60 // 6; //60
+  const NR_WORK = 20;
+  const NR_REST = 10;
+  const NR_WAIT = 60;
 
-  const NR_TABATAS = 1; //2; // 1
-  const NR_CYCLES = 8 //2;; //8
+  const NR_TABATAS = 1;
+  const NR_CYCLES = 8;
 
   const [prepareInit, setPrepareInit] = useState(NR_PREPARE);
   const [workInit, setWorkInit] = useState(NR_WORK);
@@ -53,29 +53,20 @@ export const FreeTabataProvider = ({ children }) => {
   /**
    * Logic to set the initial values before starting the workout
    */
-  const handleSetprepare = (nr) => () => {
-    setPrepareInit(nr);
-    setPrepare(nr);
+
+  const setFunctions = {
+    prepare: (nr) => {setPrepare(nr); setPrepareInit(nr);},
+    work: (nr) => {setWork(nr); setWorkInit(nr);},
+    rest: (nr) => {setRest(nr);setRestInit(nr);}, 
+    tabatas: (nr) => {setTabatas(nr); setTabatasInit(nr);},
+    cycles: (nr) => {setCycles(nr); setCyclesInit(nr);}
+  }
+
+  const handleSet = (type) => (nr) => () => {
+    setFunctions[type](nr);
   };
 
-  const handleSetwork = (nr) => () => {
-    setWorkInit(nr);
-    setWork(nr);
-  };
 
-  const handleSetrest = (nr) => () => {
-    setRestInit(nr);
-    setRest(nr);
-  };
-
-  const handleSettabatas = (nr) => () => {
-    setTabatasInit(nr);
-    setTabatas(nr);
-  };
-  const handleSetcycles = (nr) => () => {
-    setCyclesInit(nr);
-    setCycles(nr);
-  };
 
   /**
    * Logic to start, pause and stop the workout
@@ -85,11 +76,13 @@ export const FreeTabataProvider = ({ children }) => {
     // When the Start/Stop button is clicked and the current mode is working, it stops the timer and resets
     if (generalMode) {
       clearTimeout(timer);
+
       setPrepare(prepareInit);
       setWork(workInit);
       setRest(restInit);
       setCycles(cyclesInit);
       setTabatas(tabatasInit);
+
       setPauseMode(false);
       setFlow("prepare");
       !mute && audioStop.play();
@@ -111,6 +104,13 @@ export const FreeTabataProvider = ({ children }) => {
    * Logic for the workout flow
    */
 
+   const setTimeoutTimer = (setFunction, type, setTimer) => {
+    const interval = setTimeout(() => {
+      setFunction(type - 1);
+    }, 1000);
+    setTimer(interval);
+  }
+
   useEffect(() => {
     // In this first approach, the prepare calls the work when it ends
     const prepareCountDown = () => {
@@ -121,19 +121,13 @@ export const FreeTabataProvider = ({ children }) => {
         setFlow("work");
         workCountDown();
       } else {
-        const interval = setTimeout(() => {
-          setPrepare(prepare - 1);
-        }, 1000);
-        setTimer(interval);
+        setTimeoutTimer(setPrepare, prepare, setTimer);
       }
     };
     // In this first approach, the work calls the rest when it ends
     const workCountDown = () => {
       if (work === workInit) {
-        // workaround to check if it can be listened in Iphone
-        setTimeout(() => {
           !mute && audioGo.play();
-        }, 1);
       } else if (work > 0 && work < 4) {
         !mute && audio.play();
       }
@@ -155,10 +149,7 @@ export const FreeTabataProvider = ({ children }) => {
           restCountDown();
         }
       } else {
-        const interval = setTimeout(() => {
-          setWork(work - 1);
-        }, 1000);
-        setTimer(interval);
+        setTimeoutTimer(setWork, work, setTimer);
       }
     };
 
@@ -183,14 +174,11 @@ export const FreeTabataProvider = ({ children }) => {
           setTabatas(tabatas - 1);
         }
       } else {
-        const interval = setTimeout(() => {
-          setRest(rest - 1);
-        }, 1000);
-        setTimer(interval);
+        setTimeoutTimer(setRest, rest, setTimer);
       }
     };
 
-    //
+    // At the end of the wait, the flow is set to work and the number of tabatas decreased by one
     const waitCountDown = () => {
 
       if (wait > 0 && wait < 4) {
@@ -199,16 +187,13 @@ export const FreeTabataProvider = ({ children }) => {
       if (wait === 0) {
         setFlow("work");    
         setWait(NR_WAIT);    
-          setCycles(cyclesInit);
-          setWork(workInit);
-          setRest(restInit);
-          setTabatas(tabatas - 1);
+        setCycles(cyclesInit);
+        setWork(workInit);
+        setRest(restInit);
+        setTabatas(tabatas - 1);
         
       } else {
-        const interval = setTimeout(() => {
-          setWait(wait - 1);
-        }, 1000);
-        setTimer(interval);
+        setTimeoutTimer(setWait, wait, setTimer);
       }
     };
 
@@ -229,7 +214,6 @@ export const FreeTabataProvider = ({ children }) => {
     cyclesInit,
     prepareInit,
     tabatasInit,
-    audioBeep,
     audioGo,
     audioRest,
     audioVictory,
@@ -258,18 +242,14 @@ export const FreeTabataProvider = ({ children }) => {
         handleStartPause,
         timer,
         prepareInit,
-        handleSetprepare,
         workInit,
-        handleSetwork,
         restInit,
-        handleSetrest,
         tabatasInit,
-        handleSettabatas,
         cyclesInit,
-        handleSetcycles,
         flow,
         handleVolume,
         mute,
+        handleSet
       }}
     >
       {children}
@@ -278,3 +258,6 @@ export const FreeTabataProvider = ({ children }) => {
 };
 
 export default FreeTabataContext;
+
+
+
