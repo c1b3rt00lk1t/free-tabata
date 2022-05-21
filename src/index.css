@@ -270,7 +270,7 @@ body{
         display: flex;
         flex-direction: column;
         justify-content: flex-end;
-        gap: 2vh;
+        gap: 10vh;
         width: var(--mobile-width);
         color: grey;
         
@@ -401,7 +401,7 @@ body{
 
     /* About */
     .aboutContainer{
-        gap: 3vh;
+        gap: 5vh;
         width: var(--medium-screen-width);
     }
 
