@@ -17,7 +17,7 @@ const ControlsPlusMinus = ({ type, sign }) => {
   const handleClick = context['handleSet'](type)(number(result));
   
   
-  return ( <div className='controlPlusMinusBtn' onClick={handleClick}>{sign[0]}</div> );
+  return ( <div className='controlPlusMinusBtn clickable nonSelectable' onClick={handleClick}>{sign[0]}</div> );
 };
 
 export default ControlsPlusMinus;

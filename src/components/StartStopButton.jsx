@@ -6,7 +6,7 @@ const StartStopButton = () => {
   const mapper = ['start','stop'];
  
   return (
-    <div onClick={handleStartStop}className='startStopBtn'>{mapper[+generalMode]}</div>
+    <div onClick={handleStartStop}className='startStopBtn  clickable nonSelectable'>{mapper[+generalMode]}</div>
   )
 }
 

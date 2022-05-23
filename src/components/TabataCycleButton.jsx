@@ -13,7 +13,7 @@ const TabataCycleButton = ({type}) => {
   };
 
   return (
-    <div onClick={handleNavigate} className={`${type} `}>
+    <div onClick={handleNavigate} className={`${type}  clickable nonSelectable`}>
         <div className="tabataCycleNumber">{`${String(number).padStart(2,'0')}`}</div>
         <div className="">{type.toUpperCase()}</div>
     </div>

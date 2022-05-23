@@ -10,7 +10,7 @@ const DoneButton = () => {
 
 
   return (
-    <div onClick={handleNavigate} className='doneBtn'>DONE</div>
+    <div onClick={handleNavigate} className='doneBtn clickable nonSelectable'>DONE</div>
   )
 }
 

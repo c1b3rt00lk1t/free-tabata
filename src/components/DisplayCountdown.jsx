@@ -10,7 +10,7 @@ const DisplayCountdown = ({type}) => {
   const generalMode = context['generalMode'];
 
   return (
-    <div className={`${type} display ${(type === 'work' && generalMode) && 'animate-flicker'}`}>
+    <div className={`${type} display nonSelectable ${(type === 'work' && generalMode) && 'animate-flicker'}`}>
         <div className=''>{type.toUpperCase()}</div>
         <div className={`countdownDisplayItems `}>{`${String(Math.floor(countdown/60)).padStart(2,'0')}:${String(countdown%60).padStart(2,'0')}`}</div>
     </div>

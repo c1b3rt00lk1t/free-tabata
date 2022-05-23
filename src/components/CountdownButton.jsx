@@ -15,7 +15,7 @@ const CountdownButton = ({ type }) => {
   };
 
   return (
-    <div onClick={handleNavigate} className={`${type} countdownBtn `}>
+    <div onClick={handleNavigate} className={`${type} countdownBtn clickable nonSelectable`}>
         <div className="countdownBtnItems">{type.toUpperCase()}</div>
         <div className="countdownBtnItems">{`${String(Math.floor(countdown/60)).padStart(2,'0')}:${String(countdown%60).padStart(2,'0')}`}</div>
     </div>

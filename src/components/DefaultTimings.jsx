@@ -6,7 +6,7 @@ const DefaultTimings = ({type,seconds}) => {
   const handleClick = handleSet(type)(seconds);
   
   return (
-      <div onClick={handleClick} className='defaultBtn'>{`${String(Math.floor(seconds/60)).padStart(2,'0')}:${String(seconds%60).padStart(2,'0')}`}</div>
+      <div onClick={handleClick} className='defaultBtn clickable nonSelectable'>{`${String(Math.floor(seconds/60)).padStart(2,'0')}:${String(seconds%60).padStart(2,'0')}`}</div>
     )
 }
 

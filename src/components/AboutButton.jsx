@@ -15,7 +15,7 @@ const AboutButton = () => {
 
 
   return (
-    <div onClick={handleNavigate} className="misc">
+    <div onClick={handleNavigate} className="misc clickable nonSelectable">
     <BsFillQuestionCircleFill color='grey' size={33}/>
   </div>
   )

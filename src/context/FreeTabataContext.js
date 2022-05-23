@@ -20,8 +20,8 @@ export const FreeTabataProvider = ({ children }) => {
 
   //important to trick the Safari Iphone autoplay restrictions (the issue persists anyway)
   const handleVolume = () => {
-    setAudio(new Audio(beep));
-    setMute(!mute);
+    !generalMode && setAudio(new Audio(beep));
+    !generalMode && setMute(!mute);
   };
 
   // default starting values

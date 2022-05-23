@@ -9,7 +9,7 @@ const DisplayCycle = ({type}) => {
   const cycle = context[type].current;
 
   return (
-    <div className={`${type} display`}>
+    <div className={`${type} display nonSelectable`}>
         <div className=''>{type.toUpperCase()}</div>
         <div className="countdownDisplayItems">{String(cycle).padStart(2,'0')}</div>
     </div>

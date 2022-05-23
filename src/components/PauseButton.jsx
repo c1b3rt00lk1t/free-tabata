@@ -6,7 +6,7 @@ const PauseButton = () => {
   const {pauseMode,handleStartPause} = useContext(FreeTabataContext);
 
   return (
-    <div onClick={handleStartPause} className="misc">
+    <div onClick={handleStartPause} className="misc clickable nonSelectable">
     {!pauseMode ? <BsPauseCircle color='grey' size={33}/> : <BsPlayCircle color='grey' size={33}/> }
   </div>
   )

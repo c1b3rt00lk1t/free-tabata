@@ -6,7 +6,7 @@ const DefaultCycles = ({type,number}) => {
   const handleClick = handleSet(type)(number);
   
   return (
-      <div onClick={handleClick} className='defaultBtn'>{`${String(number).padStart(2,'0')}`}</div>
+      <div onClick={handleClick} className='defaultBtn clickable nonSelectable'>{`${String(number).padStart(2,'0')}`}</div>
     )
 }
 
