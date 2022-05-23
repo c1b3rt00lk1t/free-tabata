@@ -3,7 +3,7 @@ import FreeTabataContext from "../context/FreeTabataContext";
 
 const StartStopButton = () => {
   const {generalMode, handleStartStop} = useContext(FreeTabataContext);
-  const mapper = ['start','stop'];
+  const mapper = ['START','STOP'];
  
   return (
     <div onClick={handleStartStop}className='startStopBtn  clickable nonSelectable'>{mapper[+generalMode]}</div>
