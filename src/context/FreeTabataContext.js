@@ -14,14 +14,13 @@ export const FreeTabataProvider = ({ children }) => {
   const [audioGo] = useState(new Audio(go));
   const [audioStop] = useState(new Audio(stop));
   const [audioVictory] = useState(new Audio(victory));
-  const [audio, setAudio] = useState();
+  const [audio] = useState(new Audio(beep));
   //enable sounds or disable them
   const [mute, setMute] = useState(true);
 
   //important to trick the Safari Iphone autoplay restrictions (the issue persists anyway)
   const handleVolume = () => {
-    setAudio(new Audio(beep));
-    setMute(!mute);
+    !generalMode && setMute(!mute);
   };
 
   // default starting values
