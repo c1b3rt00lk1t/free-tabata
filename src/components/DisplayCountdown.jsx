@@ -8,7 +8,7 @@ const DisplayCountdown = ({type}) => {
   const context = useContext(FreeTabataContext);
   const countdown = context[type].current;
   const generalMode = context['generalMode'];
-  const flickerOnOff = context.flickerOnOff || true;
+  const flickerOnOff = context.flickerOnOff;
 
   return (
     <div className={`${type} display nonSelectable ${(type === 'work' && generalMode && flickerOnOff) && 'animate-flicker'}`}>
