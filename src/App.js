@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { FreeTabataProvider } from "./context/FreeTabataContext";
 import Cycles from "./pages/Cycles";
 import Main from "./pages/Main";
-import Ongoing from "./pages/Ongoing";
 import Prepare from "./pages/Prepare";
 import Rest from "./pages/Rest";
 import Tabatas from "./pages/Tabatas";
@@ -23,7 +22,6 @@ function App() {
             <Route exact path="/cycles" element={<Cycles />}></Route>
             <Route exact path="/tabatas" element={<Tabatas />}></Route>
             <Route exact path="/about" element={<About />}></Route>
-            <Route exact path="/ongoing" element={<Ongoing />}></Route>
           </Routes>
         </div>
       </Router>
