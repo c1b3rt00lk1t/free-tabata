@@ -1,5 +1,5 @@
 import React, {useContext} from 'react'
-import {BsFillQuestionCircleFill} from 'react-icons/bs'
+import { IoMdSettings} from 'react-icons/io'
 import { useNavigate } from 'react-router-dom'
 import FreeTabataContext from '../context/FreeTabataContext';
 
@@ -16,7 +16,7 @@ const AboutButton = () => {
 
   return (
     <div onClick={handleNavigate} className="misc clickable nonSelectable">
-    <BsFillQuestionCircleFill color='grey' size={33}/>
+    <IoMdSettings color='grey' size={33}/>
   </div>
   )
 }
