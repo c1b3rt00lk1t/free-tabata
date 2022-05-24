@@ -270,7 +270,7 @@ body{
         display: flex;
         flex-direction: column;
         justify-content: flex-end;
-        gap: 10vh;
+        gap: 3vh;
         width: var(--mobile-width);
         color: grey;
         
@@ -283,6 +283,7 @@ body{
     }
     .aboutContainer h2{
         font-size: 2.5vh;
+
     }
     .aboutContainer p{
         font-size: 1.5vh;
@@ -308,7 +309,15 @@ body{
         user-select: none; /* Standard */
     }
 
+    .settingsContainer{
+         display: flex;
+         flex-direction: row;
+         align-items: center;
+    }
 
+    .margin-left{
+        margin-left: 1vw;
+    }
 
 
 

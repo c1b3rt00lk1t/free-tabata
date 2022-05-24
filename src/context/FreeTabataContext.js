@@ -18,10 +18,13 @@ export const FreeTabataProvider = ({ children }) => {
   //enable sounds or disable them
   const [mute, setMute] = useState(true);
 
-  //important to trick the Safari Iphone autoplay restrictions (the issue persists anyway)
   const handleVolume = () => {
     !generalMode && setMute(!mute);
   };
+
+  // states for settings
+
+  const [flickerOnOff, setFlickerOnOff] = useState(true);
 
   // default starting values
   const NR_PREPARE = 4;
@@ -232,7 +235,9 @@ export const FreeTabataProvider = ({ children }) => {
         flow,
         handleVolume,
         mute,
-        handleSet
+        handleSet,
+        flickerOnOff, 
+        setFlickerOnOff
       }}
     >
       {children}
