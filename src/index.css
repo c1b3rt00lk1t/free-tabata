@@ -177,6 +177,7 @@ body{
     font-size: 8vh;
     font-weight: bold;
     text-align: center;
+    line-height: calc(var(--startStopBtnHeight)*0.825);
 }
 
 /* DONE BUTTON */
