@@ -128,7 +128,11 @@ body{
 .tabataCycleNumber{
     font-size: 8vh;
     font-weight: bold;
+    position: relative;
+    bottom: -5%;    
+
 }
+
 
 
 .display{
