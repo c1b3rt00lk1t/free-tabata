@@ -7,7 +7,9 @@ import DoneButton from "../components/DoneButton";
 const Prepare = () => {
   return (
     <div className="verticalContainer">
-      <DisplayCountdown type="prepare" />
+      <div className="verticalContainer height">
+        <DisplayCountdown type="prepare" />
+      </div>
       <div className="horizontalContainer">
         <DefaultTimings type="prepare" seconds={0} />
         <DefaultTimings type="prepare" seconds={10} />

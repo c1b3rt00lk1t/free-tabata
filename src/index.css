@@ -32,6 +32,11 @@ body{
     gap: 0.5vh;
 }
 
+/* this height prevents the content of the container - which is slightly shorter - to move the rest of the content*/
+.height{
+    height: calc(var(--countdownBtnsHeight)*1.1);
+}
+
 .margintop-5vh{
     margin-top: 5vh;
 }
@@ -137,7 +142,7 @@ body{
 
 .display{
     width: var(--mobile-width);
-    height: calc(var(--countdownBtnsHeight)*1.01);
+    height: calc(var(--countdownBtnsHeight)*1.1);
     border-radius: var(--mobile-border-radius);
     margin: 0.51vh;
     padding: 1vh;
@@ -380,7 +385,7 @@ body{
     
     .display{
         width: var(--medium-screen-width);
-        height: calc(var(--countdownBtnsHeight)*1.01);
+        height: calc(var(--countdownBtnsHeight)*1.1);
         border-radius: var(--mobile-border-radius);
         margin: 0.5vh;
         padding: 1vh;
@@ -506,7 +511,7 @@ body{
     
     .display{
         width: var(--large-screen-width);
-        height: calc(var(--countdownBtnsHeight)*1.01);
+        height: calc(var(--countdownBtnsHeight)*1.1);
         border-radius: var(--mobile-border-radius);
         margin: 0.5vh;
         padding: 1vh;

@@ -13,7 +13,7 @@ const Main = () => {
 
   return (
     <>
-      <div className={"verticalContainer"}>
+      <div className={"verticalContainer height"}>
         {!generalMode && <CountdownButton type={"prepare"} />}
         {!generalMode && <CountdownButton type={"work"} />}
         {!generalMode && <CountdownButton type={"rest"} />}
