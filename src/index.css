@@ -137,10 +137,10 @@ body{
 
 .display{
     width: var(--mobile-width);
-    height: calc(var(--countdownBtnsHeight)*1.1);
+    height: calc(var(--countdownBtnsHeight)*1.01);
     border-radius: var(--mobile-border-radius);
-    margin: 0.5vh;
-    padding: 5px;
+    margin: 0.51vh;
+    padding: 1vh;
 
     display: flex;
     flex-direction: column;
@@ -380,10 +380,10 @@ body{
     
     .display{
         width: var(--medium-screen-width);
-        height: calc(var(--countdownBtnsHeight)*1.1);
+        height: calc(var(--countdownBtnsHeight)*1.01);
         border-radius: var(--mobile-border-radius);
         margin: 0.5vh;
-        padding: 5px;
+        padding: 1vh;
 
         font-size: 5vh;
         letter-spacing: -1px;
@@ -506,10 +506,10 @@ body{
     
     .display{
         width: var(--large-screen-width);
-        height: calc(var(--countdownBtnsHeight)*1.1);
+        height: calc(var(--countdownBtnsHeight)*1.01);
         border-radius: var(--mobile-border-radius);
         margin: 0.5vh;
-        padding: 5px;
+        padding: 1vh;
 
         font-size: 5vh;
         letter-spacing: -1px;
