@@ -4,8 +4,23 @@
 
 # Free Tabata
 
-Simple <b>Tabata Timer PWA</b> which can be installed in desktop or mobile to workout offline. The flicker mode during workout can be disabled using the settings.
+### Basic description
+
+PWA · JAVASCRIPT · REACT · NETLIFY
+Tabata Timer PWA which can be installed in desktop or mobile to workout offline. The flicker mode during workout can be disabled using the settings.
+
+### Available demo online
+
+A working version of the mobile/desktop app can be found <a href='https://dulcet-taiyaki-50a307.netlify.app/'>here</a>.
 
 <b>Enjoy the training offline!</b>
 
 On iPhone Safari the sound will not play because of this <em>issue</em>: https://developer.apple.com/forums/thread/126342
+
+### Basic usage
+
+- To run the app in local: <code>$ npm run start</code>
+
+### Cloc stats
+
+![cloc stats](https://github.com/c1b3rt00lk1t/free-tabata/blob/main/images/cloc_stats.png?raw=true)
