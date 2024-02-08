@@ -13,6 +13,12 @@ Tabata Timer PWA which can be installed in desktop or mobile to workout offline.
 
 A working version of the mobile/desktop app can be found <a href='https://dulcet-taiyaki-50a307.netlify.app/'>here</a>.
 
+Check it in your mobile device scanning the QR code:
+
+<p align="center">
+<img src="https://github.com/c1b3rt00lk1t/free-tabata/blob/main/images/qrcode_free_tabata.png?raw=true" width="15%" height="15%" >
+</p>
+
 <b>Enjoy the training offline!</b>
 
 On iPhone Safari the sound will not play because of this <em>issue</em>: https://developer.apple.com/forums/thread/126342
